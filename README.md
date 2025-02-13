@@ -1,10 +1,8 @@
-# Blog generated using spurtCMS with Next.js 
+# Next.js and SpurtCMS: A Seamless Blog Experience
 
 ![Screenshot of spurtCMS using Presentation Tool to do Visual Editing](https://dev.spurtcms.com/public/img/Cover%20image.jpg)
 
-
-This sample blog is an excellent starting point to explore Next.js and spurtcms [spurtcms](https://dev.spurtcms.com). Get it up and running in minutes. Modify and adapt it to your liking;
-It comes with a native spurtcms that offers features like real-time collaboration and visual editing with live updates. Check out the [project documentaion](https://dev.spurtcms.com/documentation) for more details.
+This Next.js Blog Template integrates seamlessly with a CMS to provide an easy-to-use solution for creating, managing, and publishing blog content. With a clean, responsive design and robust features, this template allows you to build a dynamic blog powered by the flexibility of Next.js. The CMS backend simplifies content management, allowing non-technical users to easily create and update posts, while developers can customize the frontend with Next.js for a modern, fast, and scalable experience.
 
 The Studio connects to spurtcms, which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more. You can use this starter to kick-start a blog or learn these technologies.
 
@@ -31,7 +29,6 @@ The Studio connects to spurtcms, which gives you hosted content APIs with a flex
 
 Use the Deploy Button below, you'll deploy the example using 
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/spurtcms/nextjs-blog-theme&demo-title=nextjs-blog-theme&env=next_public_spurtcms_nextjs_starter_apikey)
 
 
 ## Set up environment variables
@@ -92,6 +89,6 @@ npm run prod
 ```
 
 ## Feedback and Questions
-If you have feedback or questions about this starter, please use the Github Issues on this repo, [(https://github.com/spurtcms/nextjs-blog-theme/issues)]
+If you have feedback or questions about this starter, please use the Github Issues on this repo, [(https://github.com/spurtcms/ContentVerse/issues)]
 or Send Email to us [(support@spurtcms.com)]
 
