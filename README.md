@@ -2,7 +2,7 @@
 
 ![Screenshot of spurtCMS using Presentation Tool to do Visual Editing](https://dev.spurtcms.com/public/img/Cover%20image.jpg)
 
-This Next.js Blog Template integrates seamlessly with a CMS to provide an easy-to-use solution for creating, managing, and publishing blog content. With a clean, responsive design and robust features, this template allows you to build a dynamic blog powered by the flexibility of Next.js. The CMS backend simplifies content management, allowing non-technical users to easily create and update posts, while developers can customize the frontend with Next.js for a modern, fast, and scalable experience.
+This Next.js Blog Template integrates seamlessly with a spurtcms to provide an easy-to-use solution for creating, managing, and publishing blog content. With a clean, responsive design and robust features, this template allows you to build a dynamic blog powered by the flexibility of Next.js. The spurtcms backend simplifies content management, allowing non-technical users to easily create and update posts, while developers can customize the frontend with Next.js for a modern, fast, and scalable experience.
 
 The Studio connects to  [spurtcms](https://spurtcms.com), which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more. You can use this starter to kick-start a blog or learn these technologies.
 
