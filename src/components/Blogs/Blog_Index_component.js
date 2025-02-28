@@ -316,10 +316,10 @@ const Blog_Index_component = () => {
                             </div>
 
                             <div class="pb-[8px]">
-                                <a href="#"
+                                <Link href="/membership"
                                     class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">
                                     Sign up for free
-                                </a>
+                                </Link>
                             </div>
 
                         </div>
@@ -457,7 +457,7 @@ const Blog_Index_component = () => {
                                 <h3 class="font-normal text-[24px] text-white">Membership</h3>
                                 <p class="font-normal text-[40px] text-white max-[500px]:text-[28px]">Unlock full access to <span class="font-medium">Myoan</span> and see the entire library of <span class="font-medium">paid-members</span> only posts</p>
                             </div>
-                            <a href="#" class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">Sign up for free</a>
+                            <Link href="/membership" class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">Sign up for free</Link>
                         </div>
                     </div>
                     <div class="mx-auto px-[16px] pt-[109px] max-[500px]:pt-[48px] max-w-[1295px]">

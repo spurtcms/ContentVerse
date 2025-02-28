@@ -9,23 +9,70 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Blog_Header_Component = () => {
 
-    const [header_api_result, setheader_api_result] = useState(null);
+    const [header_api_result, setheader_api_result] = useState([]);
     const [header_categorySlug, setheader_categorySlug] = useState()
     const [blog_keyword, setblog_keyword] = useState(""); // Error state
-
     const dispatch = useDispatch()
-
-    const header_slug = useSelector((s) => s.customerRedux.header_slug)
+    const header_slug = useSelector((s) => s?.customerRedux?.header_slug)
     // const headerapi_result_redux = useSelector((s) => s.customerRedux.header_api_result_redux)
-
     const router = useRouter()
-
     const [Blogs_list_api_result, setBlogs_list_api_result] = useState([]); // To store fetched data
-    const [error, setError] = useState(null);      // To handle errors
+    const [error, setError] = useState("");      // To handle errors
     const [header_logo_result, setheader_logo_result] = useState(null);
-
     const [clickedValue, setClickedValue] = useState(""); // Stores event value
     const divRef = useRef(null); // Reference for the div
+    const tenantId = useSelector((s) => s?.customerRedux?.Header_api_result_redux_function)
+    console.log(header_api_result?.[0]?.tenantId, "cdbjfbsdnfj")
+    console.log(Blogs_list_api_result, "djncjbshc")
+    const id = header_api_result?.[0]?.tenantId
+   
+
+    useEffect(() => {
+        const fetchCategoryList = async () => {
+            let variable_category = {
+                categoryFilter: {
+                    categoryGroupSlug: "blog",
+                    excludeGroup: true,
+                    hierarchyLevel: 2
+
+                }
+            }
+
+            try {
+                const res = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category);
+                setheader_api_result(res?.CategoryList?.categorylist);
+                console.log(header_api_result,"sbdhsc")
+                dispatch(Header_api_result_redux_function(res?.CategoryList?.categorylist?.[0]?.tenantId))
+            } catch (error) {
+                console.error("Error fetching category list:", error);
+            }
+        };
+
+        fetchCategoryList();
+    }, []);
+
+
+    useEffect(() => {
+        const fetchLogoData = async () => {
+            let variable = {
+                tenantId: header_api_result?.[0]?.tenantId
+            };
+            try {
+                if(header_api_result?.[0]?.tenantId!==0 &&header_api_result?.[0]?.tenantId!==null && header_api_result?.[0]?.tenantId!==undefined ){
+                   const result = await fetchGraphQl(GET_HEADER_LOGO_QUERY, variable);
+                setheader_logo_result(result);
+                console.log(result, "dbjfhvbdfv")
+               }else{
+                setheader_logo_result()
+               }
+                
+            } catch (err) {
+                console.error("Error fetching category list:", err);
+                setError(err.message);
+            }
+        }
+        fetchLogoData();
+    }, [header_api_result]);
 
 
     useEffect(() => {
@@ -64,8 +111,10 @@ const Blog_Header_Component = () => {
             };
 
             try {
+
                 const data = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list);
                 setBlogs_list_api_result(data?.ChannelEntriesList?.channelEntriesList); // Update state with fetched data
+
             } catch (err) {
                 console.error("Error fetching data:", err);
                 setError(err); // Handle errors
@@ -75,49 +124,10 @@ const Blog_Header_Component = () => {
         fetchData();
     }, [blog_keyword]); // Empty dependency array ensures this runs only once after the component mounts
 
-    useEffect(() => {
-        const fetchCategoryList = async () => {
-            const variable_category = {
-                tenantId: Blogs_list_api_result?.[0]?.tenantId
-
-            };
-
-            try {
-                const fetchedCategoryList = await fetchGraphQl(GET_HEADER_LOGO_QUERY, variable_category);
-                setheader_logo_result(fetchedCategoryList);
-            } catch (err) {
-                console.error("Error fetching category list:", err);
-                setError(err.message);
-            }
-        };
-
-        fetchCategoryList();
-    }, [Blogs_list_api_result]); // Fetch the category list only once on component mount
 
 
 
-    useEffect(() => {
-        const fetchCategoryList = async () => {
-            let variable_category = {
-                "categoryFilter": {
-                    "categoryGroupSlug": "blog",
-                    "excludeGroup": true,
-                    "hierarchyLevel": 2
 
-                }
-            }
-
-            try {
-                const fetchedCategoryList = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category);
-                setheader_api_result(fetchedCategoryList?.CategoryList?.categorylist);
-                dispatch(Header_api_result_redux_function(fetchedCategoryList?.CategoryList?.categorylist))
-            } catch (err) {
-                console.error("Error fetching category list:", err);
-            }
-        };
-
-        fetchCategoryList();
-    }, []); // Fetch the category list only once on component mount
 
     const handleClick_headerlist = (e, val) => {
 
@@ -207,7 +217,7 @@ const Blog_Header_Component = () => {
                                                 <a onClick={(e) => handleClick_headerlist(e, val)}
                                                     class={val?.categorySlug == header_categorySlug ? "font-medium text-[#120B14] text-base leading-[27px] whitespace-nowrap text-[#F33151] active cursor-pointer" : "font-medium text-[#120B14] text-base leading-[27px] whitespace-nowrap hover:text-[#F33151] cursor-pointer"}
                                                 >
-                                                    {val.categoryName}
+                                                    {val?.categoryName}
                                                 </a>
                                             </li>
                                         </>}
@@ -217,10 +227,10 @@ const Blog_Header_Component = () => {
 
                             </ul>
                         </div>
-                        <a href="#"
+                        <Link href="/auth/signin"
                             class="flex justify-center items-center bg-[#F33151] hover:bg-[#f15e76] px-[32px] max-[700px]:px-4 rounded-[50px] h-[47px] font-[700] text-base text-white whitespace-nowrap">
                             join now
-                        </a>
+                        </Link>
                         <a onclick="onMenuToggle(this)"
                             class="lg:hidden mr-[20px] w-[24px] max-[500px]:w-[16px] text-[30px] cursor-pointer">
                             <img src="/img/menu-black.svg" alt="" />

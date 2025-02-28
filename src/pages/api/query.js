@@ -259,10 +259,7 @@ $AdditionalData: EntriesAdditionalData
       length
     }
   }
-}
-
-
-  `
+} `
 
 export const GET_POSTS_CHANNELLIST_QUERY = `query
   CategoryList(
@@ -276,6 +273,7 @@ $commonFilter: Filter
           categoryName
           categorySlug
           description
+          tenantId
         }
       }
     
@@ -293,10 +291,7 @@ TopAuthorsList($id: Int){
     
   
   }
-}
-
-
-`
+}`
 
 export const GET_POSTS_CHANNELLIST_SLUG_QUERY = `
   query channelDetail($id: Int,$slug: String,$active: Boolean){
@@ -339,3 +334,88 @@ export const GET_POSTS_QUERY_CATEGORY = `query($hierarchylevel: Int!){
       }
   }
 `;
+export const GET_SIGNIN_QUERY = `mutation
+  memberCheckLogin($input: MemberSignin!){
+    memberCheckLogin(input:$input){
+      email
+      password
+      message
+      token
+      success
+    }
+  }
+`;
+export const GET_REGISTER_QUERY = `mutation
+  memberRegister(
+$input: MemberDetails!
+$arguments: MemberArguments
+  ){
+    memberRegister(input:$input,
+    arguments:$arguments)
+  }`;
+  export const GET_HEADER_FORGOT_PASSWORD_QUERY = `mutation 
+  forgotPassword($input: MemberInfo!){
+    forgotPassword(input:$input){
+      message
+    }
+  }`;
+  export const GET_RESET_NEW_PASSWORD =`mutation 
+resetPassword($input: MemberResetpassInfo!){
+  resetPassword(input:$input)
+}
+`
+export const GET_MEMBERSHIP_PLAN=`query
+MembershipLevelList(
+$filter: Filter
+$tenantId: Int
+  ){
+    MembershipLevelList(filter:$filter,
+    tenantId:$tenantId){
+      MemnershipDtails{
+        SubscriptionName
+        Description
+        MembergroupLevelId
+        InitialPayment
+        RecurrentSubscription
+        BillingAmount
+        BillingfrequentValue
+        BillingfrequentType
+        CustomTrial
+        TrialBillingAmount
+        TrialBillingLimit 
+        
+      }
+    }
+  }`
+  export const POST_MEMBERSHIP_CHECKOUT_PLAN=`mutation
+  MemberCheckoutDetails
+  ($checkouts: MemberCheckoutDetails!)
+  {
+    MemberCheckoutDetails(
+      checkouts:$checkouts
+    )
+  }`
+
+  export const GET_MEMBERSHIP_DETAIL_PAGE=`query
+  MembershipLevelDetails(
+$subscriptionid: Int
+$tenantId: Int
+  ){
+    MembershipLevelDetails(subscriptionid:$subscriptionid,
+    tenantId:$tenantId){
+      MemnershipDtails{
+        SubscriptionName
+        Description
+        MembergroupLevelId
+        InitialPayment
+        RecurrentSubscription
+        BillingAmount
+        BillingfrequentValue
+        BillingfrequentType
+        CustomTrial
+        TrialBillingAmount
+        TrialBillingLimit 
+      }
+    }
+  }
+`

@@ -17,23 +17,13 @@ const sanitizeHTML = (html) => {
         .replace(/<h1[^>]*>.*?<\/h1>/, "") // Remove the first <h1> tag and its content
         .replace(/<img[^>]*>/, ""); // Remove the first <img> tag, regardless of where it is
 };
-
-
-
 const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
-
     console.log("asa3ssaassa", postes, Total_Blogs_api_result, params)
-
-    const Detail_Result = postes.ChannelEntryDetail
+    const Detail_Result = postes?.ChannelEntryDetail
     const total_blogs_arr = Total_Blogs_api_result?.ChannelEntriesList?.channelEntriesList
-
     console.log("Total_Blogs_api_result", Detail_Result)
-
-
-    let see_all_other_blogs = total_blogs_arr.filter((item) => item.slug !== params);
-
-    let currentIndex = total_blogs_arr.findIndex((item) => item.slug === params);
-
+    let see_all_other_blogs = total_blogs_arr?.filter((item) => item?.slug !== params);
+    let currentIndex = total_blogs_arr?.findIndex((item) => item?.slug === params);
     // Find previous and next data
     let previousData = null;
     let nextData = null;
@@ -47,12 +37,6 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
     if (currentIndex < total_blogs_arr.length - 1) {
         nextData = total_blogs_arr[currentIndex + 1];
     }
-
-    console.log("Previous", previousData, nextData?.title);  // Show previous data
-
-
-    console.log("see_all_other_blogs", see_all_other_blogs);
-
 
     const router = useRouter();
     const currentURL = `https://spurtcms.com${router.asPath}`; // Replace with your actual domain
@@ -68,16 +52,13 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
     return (
         <>
             <div>
-
-
                 <Blog_Header_Component />
                 <section>
-
                     <div
                         class="flex flex-col items-center mx-auto mb-[44px] max-[700px]:mb-[38px] px-[16px] py-[17px] max-w-[1295px]">
                         <p class="mb-[30px] font-normal text-[20px] text-center">
                             <span>@{`${Detail_Result?.authorDetails?.firstName} ${Detail_Result?.authorDetails?.lastName}`}</span>
-                            {moment(Detail_Result?.createdOn).format("MMM DD, YYYY")} - {Detail_Result?.readingTime} {Detail_Result?.readingTime > 1 ? "minutes" : "minute"} read
+                            {moment(Detail_Result?.createdOn)?.format("MMM DD, YYYY")} - {Detail_Result?.readingTime} {Detail_Result?.readingTime > 1 ? "minutes" : "minute"} read
                             {/* October 19, 2023 4 minutes read */}
                         </p>
                         <h4

@@ -46,7 +46,7 @@ const CustomProviders = ({ children }) => {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+      <PersistGate persistor={persistor}>
         {children}
       </PersistGate>
     </Provider>
