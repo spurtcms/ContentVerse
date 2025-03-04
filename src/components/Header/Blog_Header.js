@@ -40,9 +40,9 @@ const Blog_Header_Component = () => {
 
             try {
                 const res = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category);
+                dispatch(Header_api_result_redux_function(res?.CategoryList?.categorylist?.[0]))
                 setheader_api_result(res?.CategoryList?.categorylist);
-                console.log(header_api_result,"sbdhsc")
-                dispatch(Header_api_result_redux_function(res?.CategoryList?.categorylist?.[0]?.tenantId))
+                console.log(res?.CategoryList?.categorylist?.[0],"sbdhsc")
             } catch (error) {
                 console.error("Error fetching category list:", error);
             }

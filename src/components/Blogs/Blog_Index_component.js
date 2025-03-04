@@ -328,10 +328,26 @@ const Blog_Index_component = () => {
                         <div class="border-[#1516183D] pb-[37px] border-b border-solid">
                             <h3 class="font-[700] text-[#120B14] text-[46px]">What’s New?</h3>
                         </div>
-                        <div class="mb-[99px] max-[500px]:mb-[38px]">
+{
+    Total_blogs_apiresult?.length==0 ? <>
+    
+    <div className="no-data-avl flexx">
+                                              <img src="/img/no-data.svg" alt="" />
+                                            </div>
+                                               <h3 className="heading36">Sorry, No results found.</h3>
+                                       
+    
+    
+    
+    </>:<>
+    <div class="mb-[99px] max-[500px]:mb-[38px]">
                             {Total_blogs_apiresult?.slice(0, visibleCount)?.map((val, i) => (<>
+
+
+
                                 <div
                                     class="flex max-[600px]:flex-col-reverse justify-between items-start gap-[16px] border-[#1516183D] py-[40px] last:pb-0 border-b last:border-b-0 border-solid max-w-[500px]:mb-[32px]">
+                                  
                                     <div class="flex flex-col items-start max-w-[832px] max-[600px]:max-w-full max-[600px]:max-w-full">
                                         <p>
                                             {/* September 9, 2023 by @breana in #innovation */}
@@ -339,9 +355,9 @@ const Blog_Index_component = () => {
                                             {moment(val?.createdOn).format("MMM DD, YYYY")} by  {`${val?.authorDetails?.firstName} ${" "} ${val?.authorDetails?.lastName}`} in
                                             #{val?.categories?.[0]?.[0]?.categoryName}
                                         </p>
-                                        <a href={`/blogs/${val?.slug}`} class="my-[10px] font-medium text-[#120B14] text-[60px] max-[998px]:text-[32px] hover:underline">
+                                        <Link href={`/blogs/${val?.slug}`} class="my-[10px] font-medium text-[#120B14] text-[60px] max-[998px]:text-[32px] hover:underline">
                                             {val?.title}
-                                        </a>
+                                        </Link>
                                         {val?.description ? (
                                             <h6
                                                 class="font-normal text-[#120B14] text-[22px]"
@@ -390,22 +406,18 @@ const Blog_Index_component = () => {
 
                             </>))}
                         </div>
-                        {/* {[0, undefined, null].includes(remainingData?.length - currentIndex) ? <></> : 
-                        <> */}
-
                         {visibleCount < Total_blogs_apiresult?.length && <>
 
-                            <div class="flex justify-center items-center mb-[149px] max-[500px]:mb-[32px] cursor-pointer">
-                                <a onClick={(e) => loadMore(e)}
-                                    class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">
-                                    Load more</a>
+<div class="flex justify-center items-center mb-[149px] max-[500px]:mb-[32px] cursor-pointer">
+    <a onClick={(e) => loadMore(e)}
+        class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">
+        Load more</a>
 
-                            </div>
+</div>
 
-                        </>}
 
-                        {/* </>} */}
-                        <div class="gap-[27px] grid grid-cols-4 max-[500px]:grid-cols-1 max-[800px]:grid-cols-2 mb-[119px] ">
+</>}
+<div class="gap-[27px] grid grid-cols-4 max-[500px]:grid-cols-1 max-[800px]:grid-cols-2 mb-[119px] ">
                             {Recomended_blogs_apiresult?.slice(0, 4)?.map((val, i) => (
                                 <>
                                     <a href={`/blogs/${val?.slug}`} class="flex flex-col items-start group">
@@ -448,6 +460,19 @@ const Blog_Index_component = () => {
                                 <p class="font-normal text-[#151618] text-[24px] group-hover:underline no-underline">I believe the world is one big family</p>
                             </a> */}
                         </div>
+    
+    
+    </>
+
+}
+                        
+                        {/* {[0, undefined, null].includes(remainingData?.length - currentIndex) ? <></> : 
+                        <> */}
+
+                       
+
+                        {/* </>} */}
+                       
 
                     </div>
                     <div class="relative bg-image">

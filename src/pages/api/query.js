@@ -383,7 +383,8 @@ $tenantId: Int
         CustomTrial
         TrialBillingAmount
         TrialBillingLimit 
-        
+        Id
+        TenantId
       }
     }
   }`
@@ -415,6 +416,7 @@ $tenantId: Int
         CustomTrial
         TrialBillingAmount
         TrialBillingLimit 
+        
       }
     }
   }
