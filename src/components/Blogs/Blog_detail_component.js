@@ -193,7 +193,7 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
                             <div class="flex flex-col items-start">
                                 <h3 class="font-normal text-[24px] text-white">Membership</h3>
                                 <p class="font-normal text-[40px] text-white max-[500px]:text-[28px]">Unlock full access to
-                                    <span class="font-medium">Myoan</span> and see the entire library of <span
+                                    <span class="font-medium"> spurtcms</span> and see the entire library of <span
                                         class="font-medium">paid-members</span> only posts
                                 </p>
                             </div>

@@ -271,7 +271,7 @@ const Blog_Index_component = () => {
                             class="relative z-20 flex max-[800px]:flex-col justify-between items-end gap-[18px] mx-auto px-[16px] max-[500px]:py-[32px] pt-[69px] pb-[58px] max-w-[1295px]">
                             <div>
                                 <h4 class="mb-[47px] font-medium text-[46px] text-white max-[500px]:text-[28px]">Join <span
-                                    class="font-[700]">Myoan</span> members. Register for free, and upgrade when you love
+                                    class="font-[700]">spurtcms</span> Register for free, and upgrade when you love
                                     it.</h4>
 
                                 <div class="w-full max-w-[545px] ">
@@ -328,120 +328,120 @@ const Blog_Index_component = () => {
                         <div class="border-[#1516183D] pb-[37px] border-b border-solid">
                             <h3 class="font-[700] text-[#120B14] text-[46px]">What’s New?</h3>
                         </div>
-{
-    Total_blogs_apiresult?.length==0 ? <>
-    
-    <div className="no-data-avl flexx">
-                                              <img src="/img/no-data.svg" alt="" />
-                                            </div>
-                                               <h3 className="heading36">Sorry, No results found.</h3>
-                                       
-    
-    
-    
-    </>:<>
-    <div class="mb-[99px] max-[500px]:mb-[38px]">
-                            {Total_blogs_apiresult?.slice(0, visibleCount)?.map((val, i) => (<>
+                        {
+                            Total_blogs_apiresult?.length == 0 ? <>
+
+                                <div className="no-data-avl flexx">
+                                    <img src="/img/no-data.svg" alt="" />
+                                </div>
+                                <h3 className="heading36">Sorry, No results found.</h3>
 
 
 
-                                <div
-                                    class="flex max-[600px]:flex-col-reverse justify-between items-start gap-[16px] border-[#1516183D] py-[40px] last:pb-0 border-b last:border-b-0 border-solid max-w-[500px]:mb-[32px]">
-                                  
-                                    <div class="flex flex-col items-start max-w-[832px] max-[600px]:max-w-full max-[600px]:max-w-full">
-                                        <p>
-                                            {/* September 9, 2023 by @breana in #innovation */}
 
-                                            {moment(val?.createdOn).format("MMM DD, YYYY")} by  {`${val?.authorDetails?.firstName} ${" "} ${val?.authorDetails?.lastName}`} in
-                                            #{val?.categories?.[0]?.[0]?.categoryName}
-                                        </p>
-                                        <Link href={`/blogs/${val?.slug}`} class="my-[10px] font-medium text-[#120B14] text-[60px] max-[998px]:text-[32px] hover:underline">
-                                            {val?.title}
-                                        </Link>
-                                        {val?.description ? (
-                                            <h6
-                                                class="font-normal text-[#120B14] text-[22px]"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: val?.description
-                                                        ?.replaceAll("<br>", " ") // Replace <br> tags with spaces
-                                                        .replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '') // Remove specific <div> tags
-                                                        .replaceAll(/<img[^>]*>/g, "") // Remove all <img> tags
-                                                        .replace(/p-\[24px_60px_10px\]/g, "") // Remove specific styles
-                                                        .replace(/<\/?[^>]+(>|$)/g, "") // Remove all remaining HTML tags
-                                                        .split(/\s+/) // Split text into words
-                                                        .slice(0, 35) // Limit to the first 100 words
-                                                        .join(" ") // Join the words back into a string
-                                                        .concat("...") // Add ellipsis if text is truncated
-                                                    // .substring(0, 100) // Take the first 1000 characters (approx. for 100 words)
+                            </> : <>
+                                <div class="mb-[99px] max-[500px]:mb-[38px]">
+                                    {Total_blogs_apiresult?.slice(0, visibleCount)?.map((val, i) => (<>
 
-                                                }}
-                                            ></h6>
 
-                                        ) : (
-                                            <></>
-                                        )}
 
-                                        {/* <h6 class="font-normal text-[#120B14] text-[20px]">
+                                        <div
+                                            class="flex max-[600px]:flex-col-reverse justify-between items-start gap-[16px] border-[#1516183D] py-[40px] last:pb-0 border-b last:border-b-0 border-solid max-w-[500px]:mb-[32px]">
+
+                                            <div class="flex flex-col items-start max-w-[832px] max-[600px]:max-w-full max-[600px]:max-w-full">
+                                                <p>
+                                                    {/* September 9, 2023 by @breana in #innovation */}
+
+                                                    {moment(val?.createdOn).format("MMM DD, YYYY")} by  {`${val?.authorDetails?.firstName} ${" "} ${val?.authorDetails?.lastName}`} in
+                                                    #{val?.categories?.[0]?.[0]?.categoryName}
+                                                </p>
+                                                <Link href={`/blogs/${val?.slug}`} class="my-[10px] font-medium text-[#120B14] text-[60px] max-[998px]:text-[32px] hover:underline">
+                                                    {val?.title}
+                                                </Link>
+                                                {val?.description ? (
+                                                    <h6
+                                                        class="font-normal text-[#120B14] text-[22px]"
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: val?.description
+                                                                ?.replaceAll("<br>", " ") // Replace <br> tags with spaces
+                                                                .replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '') // Remove specific <div> tags
+                                                                .replaceAll(/<img[^>]*>/g, "") // Remove all <img> tags
+                                                                .replace(/p-\[24px_60px_10px\]/g, "") // Remove specific styles
+                                                                .replace(/<\/?[^>]+(>|$)/g, "") // Remove all remaining HTML tags
+                                                                .split(/\s+/) // Split text into words
+                                                                .slice(0, 35) // Limit to the first 100 words
+                                                                .join(" ") // Join the words back into a string
+                                                                .concat("...") // Add ellipsis if text is truncated
+                                                            // .substring(0, 100) // Take the first 1000 characters (approx. for 100 words)
+
+                                                        }}
+                                                    ></h6>
+
+                                                ) : (
+                                                    <></>
+                                                )}
+
+                                                {/* <h6 class="font-normal text-[#120B14] text-[20px]">
                                             In the age of technological innovation,
                                             mobile applications have become gateways to virtual
                                             realms, offering users immersive experiences that often blur the lines between reality
                                             and
                                             the digital landscape.
                                         </h6> */}
-                                    </div>
-                                    <div class="w-full max-w-[306px] max-[600px]:max-w-full max-[600px]:max-w-full">
-                                        {/* <img src="/img/block-list-banner-5.png" alt="" class="w-full h-auto" /> */}
+                                            </div>
+                                            <div class="w-full max-w-[306px] max-[600px]:max-w-full max-[600px]:max-w-full">
+                                                {/* <img src="/img/block-list-banner-5.png" alt="" class="w-full h-auto" /> */}
 
-                                        <img src={val?.coverImage || "/img/no-image.png"} alt={val?.title}
-                                            class="w-full h-auto"
-                                            onError={({ currentTarget }) => {
-                                                currentTarget.onerror = null;  // Prevent infinite loop if fallback fails
-                                                currentTarget.src = "/img/no-image.png";  // Fallback to a default image
-                                            }}
-                                            style={{ width: "306px", height: "243px" }}
-                                        />
+                                                <img src={val?.coverImage || "/img/no-image.png"} alt={val?.title}
+                                                    class="w-full h-auto"
+                                                    onError={({ currentTarget }) => {
+                                                        currentTarget.onerror = null;  // Prevent infinite loop if fallback fails
+                                                        currentTarget.src = "/img/no-image.png";  // Fallback to a default image
+                                                    }}
+                                                    style={{ width: "306px", height: "243px" }}
+                                                />
 
-                                    </div>
-                                </div>
-
-                            </>))}
-                        </div>
-                        {visibleCount < Total_blogs_apiresult?.length && <>
-
-<div class="flex justify-center items-center mb-[149px] max-[500px]:mb-[32px] cursor-pointer">
-    <a onClick={(e) => loadMore(e)}
-        class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">
-        Load more</a>
-
-</div>
-
-
-</>}
-<div class="gap-[27px] grid grid-cols-4 max-[500px]:grid-cols-1 max-[800px]:grid-cols-2 mb-[119px] ">
-                            {Recomended_blogs_apiresult?.slice(0, 4)?.map((val, i) => (
-                                <>
-                                    <a href={`/blogs/${val?.slug}`} class="flex flex-col items-start group">
-                                        <div class="mb-[30px] w-full h-[271px]">
-                                            {/* <img src="/img/block-list-banner-1.png" alt="" class="w-full h-full object-cover" /> */}
-
-                                            <img src={val?.coverImage || "/img/no-image.png"} alt={val?.title}
-                                                class="w-full h-full object-cover"
-                                                onError={({ currentTarget }) => {
-                                                    currentTarget.onerror = null;  // Prevent infinite loop if fallback fails
-                                                    currentTarget.src = "/img/no-image.png";  // Fallback to a default image
-                                                }}
-                                                style={{ width: "296px", height: "271px" }}
-                                            />
-
+                                            </div>
                                         </div>
-                                        <p class="font-normal text-[#151618] text-[24px] group-hover:underline no-underline">
-                                            {val?.title}
-                                        </p>
-                                    </a>
 
-                                </>
-                            ))}
-                            {/* <a href="#" class="flex flex-col items-start group">
+                                    </>))}
+                                </div>
+                                {visibleCount < Total_blogs_apiresult?.length && <>
+
+                                    <div class="flex justify-center items-center mb-[149px] max-[500px]:mb-[32px] cursor-pointer">
+                                        <a onClick={(e) => loadMore(e)}
+                                            class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">
+                                            Load more</a>
+
+                                    </div>
+
+
+                                </>}
+                                <div class="gap-[27px] grid grid-cols-4 max-[500px]:grid-cols-1 max-[800px]:grid-cols-2 mb-[119px] ">
+                                    {Recomended_blogs_apiresult?.slice(0, 4)?.map((val, i) => (
+                                        <>
+                                            <a href={`/blogs/${val?.slug}`} class="flex flex-col items-start group">
+                                                <div class="mb-[30px] w-full h-[271px]">
+                                                    {/* <img src="/img/block-list-banner-1.png" alt="" class="w-full h-full object-cover" /> */}
+
+                                                    <img src={val?.coverImage || "/img/no-image.png"} alt={val?.title}
+                                                        class="w-full h-full object-cover"
+                                                        onError={({ currentTarget }) => {
+                                                            currentTarget.onerror = null;  // Prevent infinite loop if fallback fails
+                                                            currentTarget.src = "/img/no-image.png";  // Fallback to a default image
+                                                        }}
+                                                        style={{ width: "296px", height: "271px" }}
+                                                    />
+
+                                                </div>
+                                                <p class="font-normal text-[#151618] text-[24px] group-hover:underline no-underline">
+                                                    {val?.title}
+                                                </p>
+                                            </a>
+
+                                        </>
+                                    ))}
+                                    {/* <a href="#" class="flex flex-col items-start group">
                                 <div class="mb-[30px] w-full h-[271px]">
                                     <img src="/img/block-list-banner-2.png" alt="" class="w-full h-full object-cover" />
                                 </div>
@@ -459,20 +459,20 @@ const Blog_Index_component = () => {
                                 </div>
                                 <p class="font-normal text-[#151618] text-[24px] group-hover:underline no-underline">I believe the world is one big family</p>
                             </a> */}
-                        </div>
-    
-    
-    </>
+                                </div>
 
-}
-                        
+
+                            </>
+
+                        }
+
                         {/* {[0, undefined, null].includes(remainingData?.length - currentIndex) ? <></> : 
                         <> */}
 
-                       
+
 
                         {/* </>} */}
-                       
+
 
                     </div>
                     <div class="relative bg-image">
@@ -480,7 +480,7 @@ const Blog_Index_component = () => {
                         <div class="relative z-20 flex max-[800px]:flex-col justify-between items-end gap-[18px] mx-auto px-[16px] max-[500px]:py-[32px] pt-[83px] pb-[122px] max-w-[1295px]">
                             <div class="flex flex-col items-start">
                                 <h3 class="font-normal text-[24px] text-white">Membership</h3>
-                                <p class="font-normal text-[40px] text-white max-[500px]:text-[28px]">Unlock full access to <span class="font-medium">Myoan</span> and see the entire library of <span class="font-medium">paid-members</span> only posts</p>
+                                <p class="font-normal text-[40px] text-white max-[500px]:text-[28px]">Unlock full access to <span class="font-medium">spurtcms</span> and see the entire library of <span class="font-medium">paid-members</span> only posts</p>
                             </div>
                             <Link href="/membership" class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[465px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">Sign up for free</Link>
                         </div>
