@@ -324,8 +324,8 @@ export const GET_POSTS_QUERY_CATEGORY = `query($hierarchylevel: Int!){
   }
   `;
 
-  export const GET_HEADER_LOGO_QUERY = `query
-  GeneralInformation($tenantId:Int){
+export const GET_HEADER_LOGO_QUERY = `query
+  GeneralInformation($tenantId:String){
       GeneralInformation(tenantId:$tenantId){
           companyName
           expandLogoPath
@@ -353,21 +353,21 @@ $arguments: MemberArguments
     memberRegister(input:$input,
     arguments:$arguments)
   }`;
-  export const GET_HEADER_FORGOT_PASSWORD_QUERY = `mutation 
+export const GET_HEADER_FORGOT_PASSWORD_QUERY = `mutation 
   forgotPassword($input: MemberInfo!){
     forgotPassword(input:$input){
       message
     }
   }`;
-  export const GET_RESET_NEW_PASSWORD =`mutation 
+export const GET_RESET_NEW_PASSWORD = `mutation 
 resetPassword($input: MemberResetpassInfo!){
   resetPassword(input:$input)
 }
 `
-export const GET_MEMBERSHIP_PLAN=`query
+export const GET_MEMBERSHIP_PLAN = `query
 MembershipLevelList(
 $filter: Filter
-$tenantId: Int
+$tenantId: String
   ){
     MembershipLevelList(filter:$filter,
     tenantId:$tenantId){
@@ -388,7 +388,7 @@ $tenantId: Int
       }
     }
   }`
-  export const POST_MEMBERSHIP_CHECKOUT_PLAN=`mutation
+export const POST_MEMBERSHIP_CHECKOUT_PLAN = `mutation
   MemberCheckoutDetails
   ($checkouts: MemberCheckoutDetails!)
   {
@@ -397,10 +397,10 @@ $tenantId: Int
     )
   }`
 
-  export const GET_MEMBERSHIP_DETAIL_PAGE=`query
+export const GET_MEMBERSHIP_DETAIL_PAGE = `query
   MembershipLevelDetails(
 $subscriptionid: Int
-$tenantId: Int
+$tenantId: String
   ){
     MembershipLevelDetails(subscriptionid:$subscriptionid,
     tenantId:$tenantId){

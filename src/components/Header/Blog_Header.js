@@ -25,7 +25,7 @@ const Blog_Header_Component = () => {
     console.log(header_api_result?.[0]?.tenantId, "cdbjfbsdnfj")
     console.log(Blogs_list_api_result, "djncjbshc")
     const id = header_api_result?.[0]?.tenantId
-   
+
 
     useEffect(() => {
         const fetchCategoryList = async () => {
@@ -42,7 +42,7 @@ const Blog_Header_Component = () => {
                 const res = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category);
                 dispatch(Header_api_result_redux_function(res?.CategoryList?.categorylist?.[0]))
                 setheader_api_result(res?.CategoryList?.categorylist);
-                console.log(res?.CategoryList?.categorylist?.[0],"sbdhsc")
+                console.log(res?.CategoryList?.categorylist?.[0], "sbdhsc")
             } catch (error) {
                 console.error("Error fetching category list:", error);
             }
@@ -58,14 +58,14 @@ const Blog_Header_Component = () => {
                 tenantId: header_api_result?.[0]?.tenantId
             };
             try {
-                if(header_api_result?.[0]?.tenantId!==0 &&header_api_result?.[0]?.tenantId!==null && header_api_result?.[0]?.tenantId!==undefined ){
-                   const result = await fetchGraphQl(GET_HEADER_LOGO_QUERY, variable);
-                setheader_logo_result(result);
-                console.log(result, "dbjfhvbdfv")
-               }else{
-                setheader_logo_result()
-               }
-                
+                if (header_api_result?.[0]?.tenantId !== 0 && header_api_result?.[0]?.tenantId !== null && header_api_result?.[0]?.tenantId !== undefined) {
+                    const result = await fetchGraphQl(GET_HEADER_LOGO_QUERY, variable);
+                    setheader_logo_result(result);
+                    console.log(result, "dbjfhvbdfv")
+                } else {
+                    setheader_logo_result()
+                }
+
             } catch (err) {
                 console.error("Error fetching category list:", err);
                 setError(err.message);

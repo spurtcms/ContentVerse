@@ -63,8 +63,7 @@ function MembershipPage() {
                     setLoader(true)
                 }
                 // dispatch(fetch_unique_id(res?.MembershipLevelList?.MemnershipDtails?.[0]?.Id))
-                console.log(res?.MembershipLevelList?.MemnershipDtails?.[0]?.Id, "bcdfnjdchbfhc")
-                console.log(res, "ndfjdgnd")
+               
             }
         }
         membershipApi()

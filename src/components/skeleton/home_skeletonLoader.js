@@ -3,7 +3,7 @@ import React from 'react'
 export const Home_skeletonLoader = () => {
     return (
         <>
-        
+
             <div className="bg-[#EFFC06]">
                 <div className="mx-auto px-[16px] max-w-[1295px]">
                     <div className="flex max-[550px]:flex-col items-start gap-[45px] pb-[77px] max-[700px]:pb-[38px]">
@@ -23,10 +23,10 @@ export const Home_skeletonLoader = () => {
                             {Array.from({ length: 4 }).map((_, idx) => (
                                 <div key={idx} className="flex flex-col items-start">
                                     <div className='bg-gray-300 rounded-lg animate-pulse w-full h-60'>
-                                    <div className="mb-[12px] max-w-[326px] max-[550px]:max-w-full bg-gray-300 h-[200px] animate-pulse"></div>
-                                    <div className="w-[180px] h-[20px] bg-gray-300 animate-pulse"></div>
-                                    <div className="w-[250px] h-[30px] bg-gray-300 animate-pulse mt-[10px]"></div>
-                                </div>
+                                        <div className="mb-[12px] max-w-[326px] max-[550px]:max-w-full bg-gray-300 h-[200px] animate-pulse"></div>
+                                        <div className="w-[180px] h-[20px] bg-gray-300 animate-pulse"></div>
+                                        <div className="w-[250px] h-[30px] bg-gray-300 animate-pulse mt-[10px]"></div>
+                                    </div>
                                 </div>
                             ))}
                         </div>

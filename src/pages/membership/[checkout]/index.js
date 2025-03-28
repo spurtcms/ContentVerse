@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 const Page = () => {
-    const router =useRouter()
-console.log(router?.query?.checkout,"vhfdg")
-const id=router?.query?.checkout
+    const router = useRouter()
+    console.log(router?.query?.checkout, "vhfdg")
+    const id = router?.query?.checkout
     return (
         <>
-       <CheckoutPlan id={id}  />
+            <CheckoutPlan id={id} />
         </>
     );
 };
