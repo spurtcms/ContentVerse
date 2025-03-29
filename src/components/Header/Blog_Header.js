@@ -1,6 +1,6 @@
 import { fetchGraphQl } from '@/pages/api/graphicql';
 import { GET_HEADER_LOGO_QUERY, GET_POSTS_CHANNELLIST_QUERY, GET_POSTS_LIST_QUERY } from '@/pages/api/query';
-import { logo_url } from '@/pages/api/url';
+import { channelName, logo_url } from '@/pages/api/url';
 import { Header_api_result_redux_function } from '@/StoreConfiguration/slices/customer';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -96,17 +96,18 @@ const Blog_Header_Component = () => {
     useEffect(() => {
         const fetchData = async () => {
             let variable_list = {
-                entryFilter: {
-                    categorySlug: "blog",
+                "entryFilter": {
+                    "categorySlug": "blog",
+                    "ChannelName": channelName
                 },
-                commonFilter: {
+                "commonFilter": {
                     // limit: 10,
                     // offset: 0,
-                    keyword: blog_keyword
+                    "keyword": blog_keyword
                 },
-                AdditionalData: {
-                    categories: true,
-                    authorDetails: true,
+                "AdditionalData": {
+                    "categories": true,
+                    "authorDetails": true,
                 },
             };
 

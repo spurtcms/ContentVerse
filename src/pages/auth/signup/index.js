@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Blog_Header_Component from '@/components/Header/Blog_Header';
+import { channelName } from '@/pages/api/url';
+
 
 const Signup = () => {
     const [signup_Name, setSignup_Name] = useState("");
@@ -40,7 +42,8 @@ const Signup = () => {
         const fetchData = async () => {
             const variable_list = {
                 "entryFilter": {
-                    "categorySlug": "best-stories"
+                    "categorySlug": "best-stories",
+                    "ChannelName": channelName
                 },
                 "commonFilter": {
                     // "limit": 10,

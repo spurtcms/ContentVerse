@@ -9,6 +9,8 @@ import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { channelName } from '@/pages/api/url'
+
 
 
 const Signin = () => {
@@ -39,7 +41,8 @@ const Signin = () => {
         const fetchData = async () => {
             const variable_list = {
                 "entryFilter": {
-                    "categorySlug": "best-stories"
+                    "categorySlug": "best-stories",
+                    "ChannelName": channelName
                 },
                 "commonFilter": {
                     // "limit": 10,
@@ -132,7 +135,7 @@ const Signin = () => {
 
                     const response = await fetchGraphQl(GET_SIGNIN_QUERY, register_list);
 
-                    console.log(response , "response")
+                    console.log(response, "response")
 
                     response?.memberCheckLogin?.email ? response?.memberCheckLogin?.password ? (setPasswordError(""), setPasswordStateError(false)) : (setPasswordError("Invalid Password"), setPasswordStateError(true)) : (setEmailError("Invalid Email"), setEmailStateError(true));
 
@@ -181,7 +184,7 @@ const Signin = () => {
                 <title>Signin</title>
             </head>
 
-            <Blog_Header_Component/>
+            <Blog_Header_Component />
             <section className='bg-[#FAFAFA] min-h-[calc(100vh-120px)] p-[26px_16px] flex flex-col max-md:min-h-[calc(100vh-68px)] max-[1300px]:p-[16px] max-[1300px]:min-h-[calc(100vh-79px)]'>
                 <div className='w-[90%] mx-auto max-[1400px]:w-full max-[1600px]:mb-auto mb-0'>
                     <ul className='flex space-x-1 mb-[24px] items-center'>
@@ -232,8 +235,8 @@ const Signin = () => {
                                     <label htmlFor="check1" className='text-[12px] font-medium leading-[14px] text-[#151618CC] cursor-pointer'>Remember Password</label>
                                 </div> */}
 
-                               
-                                <Link href="/auth/forgot-password" className='text-[12px] font-semibold leading-[14px] hover:underline text-[#1D1D1F]'> Forgot Password</Link> 
+
+                                <Link href="/auth/forgot-password" className='text-[12px] font-semibold leading-[14px] hover:underline text-[#1D1D1F]'> Forgot Password</Link>
                                 {/* <a href="/auth/forgot-password" className='text-[12px] font-medium leading-[14px] text-[#1D1D1F] hover:underline'>Forgot Password ?</a> */}
                             </div>
                             <button onClick={(e) => submit_signup(e)} className='bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[32px] rounded-[4px] text-center hover:bg-[#28282c] max-[1300px]:mt-[16px]'>Sign In</button>

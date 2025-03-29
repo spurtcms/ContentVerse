@@ -107,13 +107,13 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
                         <div class="flex flex-col items-start">
 
                             <div class="flex justify-between items-center gap-[16px] mx-auto px-[16px] w-full max-w-[375px]">
-                                <a href={shareUrls.twitter} class="hover:opacity-[0.8]">
+                                <a href={shareUrls.twitter} class="hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/block-detail-foot-1.svg" alt="" />
                                 </a>
-                                <a href={shareUrls.facebook} class="hover:opacity-[0.8]">
+                                <a href={shareUrls.facebook} class="hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/block-detail-foot-2.svg" alt="" />
                                 </a>
-                                <a href={shareUrls.instagram} class="hover:opacity-[0.8]">
+                                <a href={shareUrls.instagram} class="hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/block-detail-foot-3.svg" alt="" />
                                 </a>
                                 {/* <a href="#" class="hover:opacity-[0.8]">

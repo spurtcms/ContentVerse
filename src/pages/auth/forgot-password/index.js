@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchGraphQl } from '@/pages/api/graphicql';
 // import { data } from 'autoprefixer';
 import { useRouter } from 'next/navigation';
-import { local_Url } from '@/pages/api/url';
+import { channelName, local_Url } from '@/pages/api/url';
 import Blog_Header_Component from '@/components/Header/Blog_Header';
 
 const Forgot_Password = () => {
@@ -38,7 +38,8 @@ const Forgot_Password = () => {
         const fetchData = async () => {
             const variable_list = {
                 "entryFilter": {
-                    "categorySlug": "best-stories"
+                    "categorySlug": "best-stories",
+                    "ChannelName": channelName
                 },
                 "commonFilter": {
                     // "limit": 10,
@@ -103,7 +104,7 @@ const Forgot_Password = () => {
         }
         else {
             console.log("Email is Invalid")
-            setEmailError(" Please enter your ")
+            setEmailError(" Please enter your email ")
         }
     }
     useEffect(() => {

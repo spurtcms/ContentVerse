@@ -7,6 +7,7 @@ import moment from 'moment';
 import Link from 'next/link';
 import { Home_skeletonLoader } from '../skeleton/home_skeletonLoader';
 import { useRouter } from 'next/router';
+import { channelName } from '@/pages/api/url';
 
 const Blog_Index_component = () => {
 
@@ -52,7 +53,8 @@ const Blog_Index_component = () => {
             try {
                 let variable_list = {
                     "entryFilter": {
-                        "categorySlug": categorySlug || "blog"
+                        "categorySlug": categorySlug || "blog",
+                        "ChannelName": channelName
                     },
                     "commonFilter": {
                         "limit": 10,
@@ -87,7 +89,8 @@ const Blog_Index_component = () => {
             const variable_list = {
                 "entryFilter": {
                     // "categorySlug": categorySlug || "blog"
-                    "categorySlug": categorySlug || "blog"
+                    "categorySlug": categorySlug || "blog",
+                    "ChannelName": channelName
 
                 },
                 "commonFilter": {
@@ -122,7 +125,8 @@ const Blog_Index_component = () => {
             setpage_loader(true)
             const variable_list = {
                 "entryFilter": {
-                    "categorySlug": "best-stories"
+                    "categorySlug": "best-stories",
+                    "ChannelName": channelName
 
                 },
                 "commonFilter": {
