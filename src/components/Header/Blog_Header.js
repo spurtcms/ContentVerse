@@ -146,10 +146,11 @@ const Blog_Header_Component = () => {
     const handleclick_logoimage = (e) => {
         e.preventDefault();
         setheader_categorySlug("blog")
-        router.push({
-            pathname: '/',
-            query: { categorySlug: 'blog' }
-        });
+        // router.push({
+        //     pathname: '/',
+        //     query: { categorySlug: 'blog' }
+        // });
+        router?.push("/")
 
     }
 
@@ -268,8 +269,8 @@ const Blog_Header_Component = () => {
                                 />
                             </div>
                         </div>
-                        <div className='w-full z-[999] relative min-h-[64px] border border-[#cdcdcd70]  mt-2 rounded  p-[16px] flex flex-col items-center justify-start shadow-xl max-h-[300px] overflow-auto bg-white ' >
-                            <ul className='rounded '>
+                        <div className='w-full z-[999] relative min-h-[64px] border border-[#cdcdcd70]  mt-2 rounded  p-[16px]   justify-start shadow-xl max-h-[300px] overflow-auto bg-white ' >
+                            <ul className='rounded m-auto'>
 
                                 {Blogs_list_api_result.length > 0 ? <>
                                     <li className='text-[12px] text-[#919090] mb-[10px]'>BLOGS</li>

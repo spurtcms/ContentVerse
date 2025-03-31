@@ -155,6 +155,15 @@ const Blog_Index_component = () => {
 
     }, []);
 
+    console.log(router, "router")
+    const currentURL = `https://spurtcms.com${router.asPath}`; // Replace with your actual domain
+
+    const shareUrls = {
+        facebook: `https://www.facebook.com/spurtcms`,
+        instagram: `https://www.instagram.com/spurtcms/`, // Note: Instagram doesn't support direct sharing URLs
+        youtube: `https://www.youtube.com/@spurtcms`
+    };
+
 
 
     return (
@@ -496,18 +505,18 @@ const Blog_Index_component = () => {
                                 <p class="font-normal text-[#211F1F] text-[20px]">Versatile and functional theme for running a free or paid-membership publication on Ghost.</p>
                             </div>
                             <div class="flex items-center gap-[30px]">
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                <a href={shareUrls.facebook} class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/fb.svg" alt="" />
                                 </a>
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                <a href={shareUrls.youtube} class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/youtube.svg" alt="" />
                                 </a>
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                <a href={shareUrls.instagram} class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/insta.svg" alt="" />
                                 </a>
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                {/* <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
                                     <img src="/img/v.svg" alt="" />
-                                </a>
+                                </a> */}
                             </div>
                         </div>
                         {/* <div class="gap-[24px] grid grid-cols-5 max-[500px]:grid-cols-2 max-[800px]:grid-cols-3 mb-[50px]">

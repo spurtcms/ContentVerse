@@ -39,14 +39,23 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
     }
 
     const router = useRouter();
+    console.log(router, "router")
     const currentURL = `https://spurtcms.com${router.asPath}`; // Replace with your actual domain
 
     // Social share URLs
+    // const shareUrls = {
+    //     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`,
+    //     whatsapp: `https://wa.me/?text=${encodeURIComponent(currentURL)}`,
+    //     instagram: `https://www.instagram.com/?url=${encodeURIComponent(currentURL)}`, // Note: Instagram doesn't support direct sharing URLs
+    //     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}`,
+    // };
+
     const shareUrls = {
-        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`,
-        whatsapp: `https://wa.me/?text=${encodeURIComponent(currentURL)}`,
-        instagram: `https://www.instagram.com/?url=${encodeURIComponent(currentURL)}`, // Note: Instagram doesn't support direct sharing URLs
-        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}`,
+        facebook: `https://www.facebook.com/spurtcms`,
+        youtube: `https://www.youtube.com/@spurtcms`,
+        instagram: `https://www.instagram.com/spurtcms/`, // Note: Instagram doesn't support direct sharing URLs
+        twitter: `https://twitter.com/spurtcms`,
+
     };
 
     return (
@@ -212,18 +221,18 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
                                     free or paid-membership publication on Ghost.</p>
                             </div>
                             <div class="flex items-center gap-[30px]">
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                <a href={shareUrls.facebook} class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/fb.svg" alt="" />
                                 </a>
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                <a href={shareUrls.youtube} class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/youtube.svg" alt="" />
                                 </a>
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                <a href={shareUrls.instagram} class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/insta.svg" alt="" />
                                 </a>
-                                <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
+                                {/* <a href="#" class="flex justify-center items-center w-[40px] h-[40px] hover:opacity-[0.8]">
                                     <img src="/img/v.svg" alt="" />
-                                </a>
+                                </a> */}
                             </div>
                         </div>
                         {/* <div class="gap-[24px] grid grid-cols-5 max-[500px]:grid-cols-2 max-[800px]:grid-cols-3 mb-[50px]">

@@ -63,7 +63,7 @@ function MembershipPage() {
                     setLoader(true)
                 }
                 // dispatch(fetch_unique_id(res?.MembershipLevelList?.MemnershipDtails?.[0]?.Id))
-               
+
             }
         }
         membershipApi()
@@ -75,7 +75,7 @@ function MembershipPage() {
     //     let detailParams = {
     //         "subscriptionid": Id,
     //         "tenantId": header_api_result?.[0]?.tenantId
-     
+
     //     }
     //     console.log(header_api_result?.[0]?.tenantId, "djnvkdndnv")
     //     try {
@@ -145,7 +145,6 @@ function MembershipPage() {
                                     <>
                                         {
                                             memberData?.map((data, index) => (
-
                                                 <div className='border-[1.5px] border-solid border-[#F0F0F0] p-[30px_32px] rounded-[12px] bg-white hover:shadow-[0px_4px_10px_0px_#9B9B9B40]'>
                                                     <h3 className='text-[18px] font-bold leading-[21px] text-[#151618CC] mb-[10px]'>{data?.SubscriptionName}</h3>
                                                     <p className='text-[14px] font-normal leading-[16px] text-[#1516188F] mb-[32px]'>{data?.SubscriptionName}</p>
@@ -158,32 +157,8 @@ function MembershipPage() {
                                     </>
                             }
                         </div>
-
                     </div>
                 </div>
-
-                {/* <div className=''>
-                          <h3 className='text-[18px] font-semibold leading-[21px] text-center text-[#1D1D1F] mb-[20px]'>Most Popular</h3>
-                          <div className='shadow-[0px_4px_10px_0px_#9B9B9B40] rounded-[12px]'>
-                            <div className='shadow-[0px_-3px_#1D1D1F] border-[1.5px] border-solid border-[#F0F0F0] p-[30px_32px] rounded-[12px] bg-white'>
-                                <h3 className='text-[18px] font-bold leading-[21px] text-[#151618CC] mb-[10px]'>Premium</h3>
-                                <p className='text-[14px] font-normal leading-[16px] text-[#1516188F] mb-[32px]'>Billed annually</p>
-                                <h2 className='text-[16px] font-normal text-[#1516188F]'><span className='text-[36px] font-semibold leading-[43px]
-                                 text-[#120B14]'>$29</span>/month</h2>
-                                 <Link className="bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[17px] rounded-[4px] text-center hover:bg-[#28282c]" href="/membership/checkout">Choose plan</Link>
-
-                            </div>
-                            </div>
-                          </div> */}
-
-                {/* <div className='border-[1.5px] border-solid border-[#F0F0F0] p-[30px_32px] rounded-[12px] bg-white hover:shadow-[0px_4px_10px_0px_#9B9B9B40]'>
-                                <h3 className='text-[18px] font-bold leading-[21px] text-[#151618CC] mb-[10px]'>Pro</h3>
-                                <p className='text-[14px] font-normal leading-[16px] text-[#1516188F] mb-[32px]'>Billed annually</p>
-                                <h2 className='text-[16px] font-normal text-[#1516188F]'><span className='text-[36px] font-semibold leading-[43px]
-                                 text-[#120B14]'>$49</span>/month</h2>
-                                 <Link className="bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[24px] rounded-[4px] text-center hover:bg-[#28282c]" href="/membership/checkout">Choose plan</Link>
-
-                            </div> */}
             </section>
         </>
     )
