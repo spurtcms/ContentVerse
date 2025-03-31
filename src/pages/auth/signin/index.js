@@ -158,9 +158,6 @@ const Signin = () => {
         } else {
             console.log("Form is invalid");
         }
-
-
-
     };
 
     const handleSignup = (event) => {

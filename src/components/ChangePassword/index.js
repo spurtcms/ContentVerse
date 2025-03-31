@@ -9,6 +9,7 @@ import React, { useState, useEffect } from "react";
 import Blog_Header_Component from "@/components/Header/Blog_Header";
 import { useDispatch } from "react-redux";
 import { TenantId_redux } from "@/StoreConfiguration/slices/customer";
+import { channelName } from "@/pages/api/url";
 
 
 const NewPassword = () => {
