@@ -22,7 +22,7 @@ const Blog_Index_component = () => {
     const { categorySlug } = router.query;
 
     const [visibleCount, setVisibleCount] = useState(5); // Initially show 5 blogs
-
+    console.log(Recomended_blogs_apiresult, "recommendedDetails")
     const loadMore = () => {
         setVisibleCount((prevCount) => prevCount + 5); // Load next 5
     };
@@ -72,6 +72,7 @@ const Blog_Index_component = () => {
 
                 const data = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list);
                 setRecomended_blogs_apiresult(data?.ChannelEntriesList?.channelEntriesList); // Set the fetched data into state
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -172,12 +173,15 @@ const Blog_Index_component = () => {
                 <Blog_Header_Component />
                 <section>
                     <div class="mx-auto mb-[105px] max-[998px]:mb-[28px] px-[16px] max-w-[1295px]">
-                        <h2 class="font-normal text-[66px] max-[500px]:text-[28px] max-[998px]:text-[48px]">
+                        <h2 class="font-normal text-[66px] max-[500px]:text-[28px] max-[998px]:text-[48px] leading-[1.2]">
                             {/* <span class="font-[700]">This is SpurtCMS.</span> We are a community
                             that celebrates contemporary <span class="font-[700]">culture
                                 focused</span> on technology, design, art and
                             web. */}
-                            <span class="font-[700]">{homePageDescription?.CategoryList?.categorylist?.[0]?.description}</span>
+                            <span class="font-[700]">Welcome to a Space Where Ideas Take Shape! </span>
+                            From decoding tech trends to capturing your latest travel tales, <span class="font-[700]">
+                                this blog is where stories find their voice.</span>
+                            {/* <span class="font-[700] ">{homePageDescription?.CategoryList?.categorylist?.[0]?.description}</span> */}
                         </h2>
                     </div>
                     {page_loader ? <>
@@ -287,42 +291,44 @@ const Blog_Index_component = () => {
                                     class="font-[700]">spurtcms</span> Register for free, and upgrade when you love
                                     it.</h4>
 
-                                <div class="w-full max-w-[545px] ">
-                                    <ul class="gap-[40px] gap-y-[5px] grid grid-cols-2 max-[550px]:grid-cols-1 max-[550px]:pl-[2rem] list-disc list-inside">
-                                        <li class="text-[#120B14] hover:text-white group">
-                                            <a href="#"
-                                                class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline">Join
-                                                1000+ happy
-                                                members.</a>
+                                <div class="w-full">
+                                    <ul class="gap-[40px] gap-y-[5px] grid grid-cols-2 max-[550px]:grid-cols-1 max-[550px]:pl-[2rem] list-disc list-inside ">
+                                        <li class="text-[#120B14] hover:text-white group group-hover:text-white font-normal  text-[18px] no-underline ">
+                                            {/* <a href="#" class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline"> */}
+                                            Love what you read? Become part of it!
+                                            {/* </a> */}
                                         </li>
-                                        <li class="text-[#120B14] hover:text-white group">
-                                            <a href="#"
-                                                class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline">Weekly
-                                                email
-                                                newsletter</a>
+                                        <li class="text-[#120B14] hover:text-white group group-hover:text-white font-normal  text-[18px] no-underline">
+                                            {/* <a href="#" class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline"> */}
+                                            Free to get started
+
+                                            {/* </a> */}
                                         </li>
-                                        <li class="text-[#120B14] hover:text-white group">
-                                            <a href="#"
-                                                class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline">Access
-                                                to
-                                                comments</a>
+                                        <li class="text-[#120B14] hover:text-white group group-hover:text-white font-normal  text-[18px] no-underline">
+                                            {/* <a href="#" class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline"> */}
+                                            1000+ happy members already onboard
+                                            {/* </a> */}
                                         </li>
-                                        <li class="text-[#120B14] hover:text-white group">
-                                            <a href="#"
-                                                class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline">Free
-                                                forever</a>
+                                        <li class="text-[#120B14] hover:text-white group group-hover:text-white font-normal text-[18px] no-underline">
+                                            {/* <a href="#" class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline"> */}
+                                            Comment and engage on posts
+                                            {/* </a> */}
                                         </li>
-                                        <li class="text-[#120B14] hover:text-white group">
-                                            <a href="#"
-                                                class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline">Access
-                                                to
-                                                comments</a>
+                                        <li class="text-[#120B14] hover:text-white group group-hover:text-white font-normal  text-[18px] no-underline">
+                                            {/* <a href="#" class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline"> */}
+                                            Weekly newsletters with fresh updates
+                                            {/* </a> */}
                                         </li>
-                                        <li class="text-[#120B14] hover:text-white group">
-                                            <a href="#"
-                                                class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline">No
-                                                spam ever, we
-                                                promise!</a>
+                                        <li class="text-[#120B14] hover:text-white group group-hover:text-white font-normal  text-[18px] no-underline">
+                                            {/* <a href="#" class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline"> */}
+                                            Get access to exclusive posts and content
+                                            {/* </a> */}
+                                        </li>
+
+                                        <li class="text-[#120B14] hover:text-white group group-hover:text-white font-normal  text-[18px] no-underline">
+                                            {/* <a href="#" class="group-hover:text-white font-normal text-[#120B14] text-[18px] no-underline"> */}
+                                            No spam, ever. Just good content
+                                            {/* </a> */}
                                         </li>
                                     </ul>
                                 </div>
@@ -361,14 +367,14 @@ const Blog_Index_component = () => {
                                         <div
                                             class="flex max-[600px]:flex-col-reverse justify-between items-start gap-[16px] border-[#1516183D] py-[40px] last:pb-0 border-b last:border-b-0 border-solid max-w-[500px]:mb-[32px]">
 
-                                            <div class="flex flex-col items-start max-w-[832px] max-[600px]:max-w-full max-[600px]:max-w-full">
+                                            <div class="flex flex-col items-start max-w-[832px] max-[600px]:max-w-full">
                                                 <p>
                                                     {/* September 9, 2023 by @breana in #innovation */}
 
                                                     {moment(val?.createdOn).format("MMM DD, YYYY")} by  {`${val?.authorDetails?.firstName} ${" "} ${val?.authorDetails?.lastName}`} in
                                                     #{val?.categories?.[0]?.[0]?.categoryName}
                                                 </p>
-                                                <Link href={`/blogs/${val?.slug}`} class="my-[10px] font-medium text-[#120B14] text-[60px] max-[998px]:text-[32px] hover:underline">
+                                                <Link href={`/blogs/${val?.slug}`} class="my-[10px] font-medium text-[#120B14] text-[60px] max-[998px]:text-[32px] hover:underline leading-[1.2]">
                                                     {val?.title}
                                                 </Link>
                                                 {val?.description ? (
@@ -402,7 +408,7 @@ const Blog_Index_component = () => {
                                             the digital landscape.
                                         </h6> */}
                                             </div>
-                                            <div class="w-full max-w-[306px] max-[600px]:max-w-full max-[600px]:max-w-full">
+                                            <div class="w-full max-w-[306px] max-[600px]:max-w-full ">
                                                 {/* <img src="/img/block-list-banner-5.png" alt="" class="w-full h-auto" /> */}
 
                                                 <img src={val?.coverImage || "/img/no-image.png"} alt={val?.title}

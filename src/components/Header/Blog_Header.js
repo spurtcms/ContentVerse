@@ -167,6 +167,14 @@ const Blog_Header_Component = () => {
         router.push(`/blogs/${val.slug}`);
         setClickedValue(false)
     }
+    // const enterKeyValue = (e) => {
+
+    //     if (e.key == "Enter") {
+    //         if (e.target.placeholder == "search") {
+    //             handleclick_searchbar_div()
+    //         }
+    //     }
+    // }
 
     return (
         <>
@@ -198,6 +206,7 @@ const Blog_Header_Component = () => {
                                 placeholder="search"
                                 value={""}
                                 onClick={(e) => setClickedValue(true)}
+
                             />
                         </div>
                     </div>

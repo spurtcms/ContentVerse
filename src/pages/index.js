@@ -1,14 +1,15 @@
 import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import Blog_index_page from "./blogs";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+
+export const bricolagegrotesque = Bricolage_Grotesque({
+  // variable: "Bricolage_Grotesque",
   subsets: ["latin"],
 });
 
