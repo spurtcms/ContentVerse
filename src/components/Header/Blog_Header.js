@@ -26,6 +26,27 @@ const Blog_Header_Component = () => {
     console.log(Blogs_list_api_result, "djncjbshc")
     const id = header_api_result?.[0]?.tenantId
 
+    useEffect(() => {
+        const fetchLogoData = async () => {
+            let variable = {
+                tenantId: header_api_result?.[0]?.tenantId
+            };
+            try {
+                if (header_api_result?.[0]?.tenantId !== 0 && header_api_result?.[0]?.tenantId !== null && header_api_result?.[0]?.tenantId !== undefined) {
+                    const result = await fetchGraphQl(GET_HEADER_LOGO_QUERY, variable);
+                    setheader_logo_result(result);
+                    console.log(result, "dbjfhvbdfv")
+                } else {
+                    setheader_logo_result()
+                }
+
+            } catch (err) {
+                console.error("Error fetching category list:", err);
+                setError(err.message);
+            }
+        }
+        fetchLogoData();
+    }, [header_api_result]);
 
     useEffect(() => {
         const fetchCategoryList = async () => {
@@ -52,27 +73,7 @@ const Blog_Header_Component = () => {
     }, []);
 
 
-    useEffect(() => {
-        const fetchLogoData = async () => {
-            let variable = {
-                tenantId: header_api_result?.[0]?.tenantId
-            };
-            try {
-                if (header_api_result?.[0]?.tenantId !== 0 && header_api_result?.[0]?.tenantId !== null && header_api_result?.[0]?.tenantId !== undefined) {
-                    const result = await fetchGraphQl(GET_HEADER_LOGO_QUERY, variable);
-                    setheader_logo_result(result);
-                    console.log(result, "dbjfhvbdfv")
-                } else {
-                    setheader_logo_result()
-                }
 
-            } catch (err) {
-                console.error("Error fetching category list:", err);
-                setError(err.message);
-            }
-        }
-        fetchLogoData();
-    }, [header_api_result]);
 
 
     useEffect(() => {

@@ -25,7 +25,6 @@ function MembershipPage() {
                     categoryGroupSlug: "blog",
                     excludeGroup: true,
                     hierarchyLevel: 2
-
                 }
             }
 
@@ -100,7 +99,6 @@ function MembershipPage() {
     return (
         <>
             <Blog_Header_Component />
-
             <section className='bg-[#FAFAFA] min-h-[calc(100vh-120px)] p-[26px_16px] flex flex-col 
                     max-md:min-h-[calc(100vh-68px)] max-xl:min-h-[calc(100vh-79px)]' >
                 <div className='w-[90%] mx-auto max-[1400px]:w-full '>
@@ -149,7 +147,11 @@ function MembershipPage() {
                                                     <h3 className='text-[18px] font-bold leading-[21px] text-[#151618CC] mb-[10px]'>{data?.SubscriptionName}</h3>
                                                     <p className='text-[14px] font-normal leading-[16px] text-[#1516188F] mb-[32px]'>{data?.SubscriptionName}</p>
                                                     <h2 className='text-[16px] font-normal text-[#1516188F]'><span className='text-[36px] font-semibold leading-[43px]
-                         text-[#120B14]'>${data?.InitialPayment}</span>/month</h2>
+                         text-[#120B14]'>${data?.InitialPayment}</span>/
+                                                        {data?.BillingfrequentType == 7 ? data?.BillingfrequentValue + "weeks" :
+                                                            data?.BillingfrequentType == 30 ? data?.BillingfrequentValue + "month" :
+                                                                data?.BillingfrequentType == 365 ? data?.BillingfrequentValue + "year" : data?.BillingfrequentValue + "days"
+                                                        }</h2>
                                                     <Link className="bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[17px] rounded-[4px] text-center hover:bg-[#28282c]" href={`/membership/${data?.Id}`} >Choose plan</Link>
                                                 </div>
                                             ))

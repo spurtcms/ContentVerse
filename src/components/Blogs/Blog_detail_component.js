@@ -3,6 +3,7 @@ import Blog_Header_Component from '../Header/Blog_Header'
 import { useRouter } from 'next/router';
 import moment from 'moment';
 import DOMPurify from 'dompurify';
+import Link from 'next/link';
 
 
 const sanitizeHTML = (html) => {
@@ -115,7 +116,7 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
 
                         <div class="flex flex-col items-start">
 
-                            <div class="flex justify-between items-center gap-[16px] mx-auto px-[16px] w-full max-w-[375px]">
+                            {/* <div class="flex justify-between items-center gap-[16px] mx-auto px-[16px] w-full max-w-[375px]">
                                 <a href={shareUrls.twitter} class="hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/block-detail-foot-1.svg" alt="" />
                                 </a>
@@ -125,10 +126,10 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
                                 <a href={shareUrls.instagram} class="hover:opacity-[0.8]" target='_blank'>
                                     <img src="/img/block-detail-foot-3.svg" alt="" />
                                 </a>
-                                {/* <a href="#" class="hover:opacity-[0.8]">
+                                <a href="#" class="hover:opacity-[0.8]">
                                     <img src="/img/block-detail-foot-4.svg" alt="" />
-                                </a> */}
-                            </div>
+                                </a>
+                            </div> */}
                         </div>
                     </div>
 
@@ -206,9 +207,9 @@ const Blog_detail_component = ({ postes, Total_Blogs_api_result, params }) => {
                                         class="font-medium">paid-members</span> only posts
                                 </p>
                             </div>
-                            <a href="#"
+                            <Link href="/membership"
                                 class="flex items-center bg-[#F33151] hover:bg-[#f15e76] px-[46px] max-[500px]:px-[23px] rounded-[50px] max-w-[269px] h-[79px] font-medium text-[24px] text-white max-[500px]:text-[18px] whitespace-nowrap">Sign
-                                up for free</a>
+                                up for free</Link>
                         </div>
                     </div>
                     <div class="mx-auto px-[16px] pt-[109px] max-[500px]:pt-[48px] max-w-[1295px]">

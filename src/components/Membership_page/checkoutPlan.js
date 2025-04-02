@@ -315,7 +315,10 @@ export default function CheckoutPlan({ id }) {
                                             </div>
                                             <div>
                                                 <p className='text-[16px] font-normal text-[#1516188F]'><span className='text-[24px] font-semibold leading-[29px]
-                                 text-[#120B14]'>${data?.InitialPayment}</span>/month</p>
+                                 text-[#120B14]'>${data?.InitialPayment}</span>/  {data?.BillingfrequentType == 7 ? data?.BillingfrequentValue + "weeks" :
+                                                        data?.BillingfrequentType == 30 ? data?.BillingfrequentValue + "month" :
+                                                            data?.BillingfrequentType == 365 ? data?.BillingfrequentValue + "year" : data?.BillingfrequentValue + "days"
+                                                    }</p>
                                             </div>
                                             <div className='max-sm:col-span-2'>
                                                 <Link className="bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-fit block h-[42px] font-semibold text-[#FFFFFF] rounded-[4px] text-center hover:bg-[#28282c] max-sm:w-full" href="/membership">Choose plan</Link>
