@@ -28,7 +28,7 @@ export async function getServerSideProps({ params }) {
     let variable_slug = { "slug": params?.detail, "AdditionalData": { "authorDetails": true, "categories": true } };
 
     const postes = await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug);
-
+    console.log(postes, "jhdssddh")
     let variable_lists = {
         "entryFilter": {
             "categorySlug": "blog",

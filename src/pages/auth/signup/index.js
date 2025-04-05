@@ -239,7 +239,7 @@ const Signup = () => {
                                     <div className=' absolute flex items-start space-x-[4px] mt-[5px]'><img src="/img/error.svg" alt="error" /> <p className='text-[10px] font-normal leading-[12px] text-[#EC1919]'>{passwordError} </p></div>}
                             </div>
 
-                            <button onClick={submit_signup} className='bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[34px] rounded-[4px] text-center hover:bg-[#28282c] '>Getting started</button>
+                            <button onClick={() => submit_signup()} className='bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[34px] rounded-[4px] text-center hover:bg-[#28282c] '>Getting started</button>
                         </div>
 
                         <div className='flex items-center space-x-[4px] mt-[16px] justify-center max-[1300px]:mt-[16px]'>

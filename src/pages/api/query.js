@@ -10,7 +10,8 @@ $AdditionalData: EntriesAdditionalData
       sort:$sort,
       entryFilter:$entryFilter,
       AdditionalData:$AdditionalData)
-    {
+   
+      {
       channelEntriesList{
         id
         title
@@ -91,6 +92,7 @@ $AdditionalData: EntriesAdditionalData
         }
         
       }
+       
     }
   }
 
@@ -374,6 +376,7 @@ $tenantId: String
       MemnershipDtails{
         SubscriptionName
         Description
+        MembershipLevelDetails
         MembergroupLevelId
         InitialPayment
         RecurrentSubscription
@@ -385,6 +388,7 @@ $tenantId: String
         TrialBillingLimit 
         Id
         TenantId
+
       }
     }
   }`
@@ -407,6 +411,7 @@ $tenantId: String
       MemnershipDtails{
         SubscriptionName
         Description
+        MembershipLevelDetails
         MembergroupLevelId
         InitialPayment
         RecurrentSubscription
@@ -420,4 +425,20 @@ $tenantId: String
       }
     }
   }
+`
+export const GET_PAYMENT_INFORMATION = `
+ query
+    Integration($tenantId: String){
+        Integration(tenantId: $tenantId){
+      ListIntegrations{
+                Id
+                GatewayName
+                GatewayDesc
+                ClientId
+                ClientSecret
+                CoverImage
+            }
+        }
+    }
+
 `

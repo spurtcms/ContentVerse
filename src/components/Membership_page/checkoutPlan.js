@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import Link from 'next/link'
-import { GET_MEMBERSHIP_DETAIL_PAGE, GET_MEMBERSHIP_PLAN, GET_POSTS_CHANNELLIST_QUERY, POST_MEMBERSHIP_CHECKOUT_PLAN } from '@/pages/api/query';
+import { GET_MEMBERSHIP_DETAIL_PAGE, GET_MEMBERSHIP_PLAN, GET_PAYMENT_INFORMATION, GET_POSTS_CHANNELLIST_QUERY, POST_MEMBERSHIP_CHECKOUT_PLAN } from '@/pages/api/query';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGraphQl } from '@/pages/api/graphicql';
 import Blog_Header_Component from '@/components/Header/Blog_Header';
@@ -48,8 +48,6 @@ export default function CheckoutPlan({ id }) {
         name: /^[A-Za-z]{3,}$/,
         number: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\\./0-9]*$/
     };
-    console.log(id, "id");
-    console.log(tenantId?.tenantId, "tenantIddddd")
 
     useEffect(() => {
         const fetchCategoryList = async () => {
@@ -267,6 +265,19 @@ export default function CheckoutPlan({ id }) {
 
     }
 
+    useEffect(() => {
+        const paymentInfo = async () => {
+            let variable = {
+                "tenantId": tenantId?.tenantId
+            }
+
+            const response = await fetchGraphQl(GET_PAYMENT_INFORMATION, variable)
+            console.log(response, "kcjsdcbdh")
+        }
+        paymentInfo()
+
+    }, [])
+
 
 
     return (
@@ -311,7 +322,7 @@ export default function CheckoutPlan({ id }) {
                                         <div className='flex items-center justify-between border border-[#D7D7D7] bg-[#F8F8F8] p-[20px] rounded-[12px] mt-[16px] gap-[16px] max-sm:grid max-sm:grid-cols-2'>
                                             <div >
                                                 <h3 className='text-[18px] font-bold text-[#151618CC] leading-[21px] mb-[10px]'>{data?.SubscriptionName}</h3>
-                                                <p className='text-[14px] font-normal text-[#1516188F] leading-[16px] '>{data?.SubscriptionName}</p>
+                                                <p className='text-[14px] font-normal text-[#1516188F] leading-[16px] '>{data?.Description}</p>
                                             </div>
                                             <div>
                                                 <p className='text-[16px] font-normal text-[#1516188F]'><span className='text-[24px] font-semibold leading-[29px]
@@ -328,7 +339,7 @@ export default function CheckoutPlan({ id }) {
                                         <div className='w-full rounded-[12px] overflow-hidden my-[16px] '>
                                             <img src="/img/detail-banner.svg" alt="banner" className='w-full h-full object-cover' />
                                         </div>
-                                        <p className='text-base font-normal leading-[26px] text-[#1D1D1F]' >{data?.Description}</p>
+                                        <p className='text-base font-normal leading-[26px] text-[#1D1D1F]' >{data?.MembershipLevelDetails}</p>
                                     </>
                                 ))
                             }
@@ -456,6 +467,61 @@ export default function CheckoutPlan({ id }) {
                             </div>
 
                         </div>
+                        {/* payment information */}
+
+                        <div className='bg-white border border-[#E9E9E9] rounded-[12px] p-[40px] mb-[30px] max-sm:p-[16px]'>
+                            <h3 className='text-[20px] font-semibold leading-[24px] mb-[40px] text-[#1D1D1F]'>Payment Information</h3>
+
+                            <div className='mb-[30px] last-of-type:mb-0'>
+                                <input type="radio" id='radio1' name='radio' className='peer hidden' />
+                                <label htmlFor="radio1" className='cursor-pointer peer-checked:border-[#212121] peer-checked:[&>.radio-img>img:first-of-type]:hidden [&>.radio-img>img:last-of-type]:hidden peer-checked:[&>.radio-img>img:last-of-type]:block border border-[#D6D6D6] border-solid rounded-[12px] p-[30px_20px] max-md:p-[16px] flex items-start space-x-[10px]'>
+                                    <div className='radio-img min-w-[32px] min-h-[32px] max-md:min-w-[24px] max-md:min-h-[24px]'>
+                                        <img src="/img/unchecked-radio.svg" alt="uncheck" />
+                                        <img src="/img/checked-radio.svg" alt="uncheck" />
+                                    </div>
+                                    <div className='grow'>
+                                        <div className='flex items-center justify-between space-x-4 mb-[10px]'>
+                                            <div className='flex items-center space-x-[10px]'>
+                                                <img src="/img/paypal.svg" alt="paypal" />
+                                                <h3 className='text-[24px] font-semibold leading-[30px] text-[#1D1D1F]'>PayPal</h3>
+                                            </div>
+                                            <div className='flex items-center space-x-[4px] p-[2px_6px] bg-[#E0EEDE] rounded'>
+                                                <img src="/img/check-green.svg" alt="check" />
+                                                <p className='text-[14px] font-normal leading-[24px] text-[#1B5214]'>Active</p>
+                                            </div>
+                                        </div>
+                                        <p className='text-[#434445] text-base font-normal leading-6'>A trusted global payment system for sending, receiving, and managing money.</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div className='mb-[30px] last-of-type:mb-0'>
+                                <input type="radio" id='radio2' name='radio' className='peer hidden' />
+                                <label htmlFor="radio2" className='cursor-pointer peer-checked:border-[#212121] peer-checked:[&>.radio-img>img:first-of-type]:hidden [&>.radio-img>img:last-of-type]:hidden peer-checked:[&>.radio-img>img:last-of-type]:block border border-[#D6D6D6] border-solid rounded-[12px] p-[30px_20px] max-md:p-[16px] flex items-start space-x-[10px]'>
+                                    <div className='radio-img min-w-[32px] min-h-[32px] max-md:min-w-[24px] max-md:min-h-[24px]'>
+                                        <img src="/img/unchecked-radio.svg" alt="uncheck" />
+                                        <img src="/img/checked-radio.svg" alt="uncheck" />
+                                    </div>
+                                    <div className='grow'>
+                                        <div className='flex items-center justify-between space-x-4 mb-[10px]'>
+                                            <div className='flex items-center space-x-[10px]'>
+                                                <img src="/img/stripe.svg" alt="paypal" />
+                                                <h3 className='text-[24px] font-semibold leading-[30px] text-[#1D1D1F]'>Stripe</h3>
+                                            </div>
+                                            <div className='flex items-center space-x-[4px] p-[2px_6px] bg-[#E0EEDE] rounded'>
+                                                <img src="/img/check-green.svg" alt="check" />
+                                                <p className='text-[14px] font-normal leading-[24px] text-[#1B5214]'>Active</p>
+                                            </div>
+                                        </div>
+                                        <p className='text-[#434445] text-base font-normal leading-6'>A powerful financial platform enabling online and in-person transactions.</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                        </div>
+
+
+
 
                         <button className="bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] rounded-[4px] text-center hover:bg-[#28282c]" onClick={handleSubmit} >Checkout</button>
                     </div>

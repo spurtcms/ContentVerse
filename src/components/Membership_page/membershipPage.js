@@ -16,6 +16,7 @@ function MembershipPage() {
     const [header_api_result, setheader_api_result] = useState([]);
     const dispatch = useDispatch()
     const arr = [1, 2, 3]
+    console.log(memberData, "memberData")
     console.log(tenantId?.tenantId, "cbsdhcsdc")
     const router = useRouter();
     useEffect(() => {
@@ -145,7 +146,7 @@ function MembershipPage() {
                                             memberData?.map((data, index) => (
                                                 <div className='border-[1.5px] border-solid border-[#F0F0F0] p-[30px_32px] rounded-[12px] bg-white hover:shadow-[0px_4px_10px_0px_#9B9B9B40]'>
                                                     <h3 className='text-[18px] font-bold leading-[21px] text-[#151618CC] mb-[10px]'>{data?.SubscriptionName}</h3>
-                                                    <p className='text-[14px] font-normal leading-[16px] text-[#1516188F] mb-[32px]'>{data?.SubscriptionName}</p>
+                                                    <p className='text-[14px] font-normal leading-[16px] text-[#1516188F] mb-[32px]'>{data?.Description}</p>
                                                     <h2 className='text-[16px] font-normal text-[#1516188F]'><span className='text-[36px] font-semibold leading-[43px]
                          text-[#120B14]'>${data?.InitialPayment}</span>/
                                                         {data?.BillingfrequentType == 7 ? data?.BillingfrequentValue + " weeks" :
