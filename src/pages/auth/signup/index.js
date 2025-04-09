@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Blog_Header_Component from '@/components/Header/Blog_Header';
-import { channelName } from '@/pages/api/url';
+
 
 
 const Signup = () => {
@@ -26,7 +26,7 @@ const Signup = () => {
 
     const [signupTenantId, setSignupTenantId] = useState("");
     const [signupUserId, setSignupUserId] = useState("");
-    const [hidePassword, setHidePassword] = useState(false);
+    const [hidePassword, setHidePassword] = useState(true);
 
     const [loginResponse, setLoginResponse] = useState(false);
 
@@ -43,7 +43,7 @@ const Signup = () => {
             const variable_list = {
                 "entryFilter": {
                     "categorySlug": "best-stories",
-                    "ChannelName": channelName
+                  
                 },
                 "commonFilter": {
                     // "limit": 10,
@@ -148,7 +148,7 @@ const Signup = () => {
                     const response = await fetchGraphQl(GET_REGISTER_QUERY, register_list);
                     console.log(" response", response?.memberRegister)
                     if (response?.memberRegister) {
-                        router.push("/");
+                        router.push("/auth/signin");
                     } else {
                         setEmailError("Email already exists")
                         setEmailStateError(true)
@@ -230,9 +230,17 @@ const Signup = () => {
                             <div className='mb-[24px] last-of-type:mb-0  relative'>
                                 <label className='text-[14px] font-medium leading-[16px] text-[#1D1D1F] block mb-[5px]'>Password</label>
                                 <div className='relative flex items-center'>
-                                    <input placeholder="Enter your Password" type={`${hidePassword ? "text" : "password"}`} className={`border rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] text-black font-normal leading-[16px] placeholder:text-[#1516188F] ${passwordStateError ? "border-[#EC1919]" : "border-[#00000029]"} `} id="password" value={signup_Password} onChange={handleSignup} />
+                                    <input placeholder="Enter your Password" type={`${hidePassword ? "password" : "text"}`} className={`border rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] text-black font-normal leading-[16px] placeholder:text-[#1516188F] ${passwordStateError ? "border-[#EC1919]" : "border-[#00000029]"} `} id="password" value={signup_Password} onChange={handleSignup} />
                                     <button className='absolute right-[10px] p-0' onClick={(e) => setHidePassword(!hidePassword)}>
-                                        <img src="/img/hide-password.svg" alt="password" />
+                                        <img src=
+                                        {
+                                           hidePassword? 
+                                           "/img/hide-password.svg":  "/img/show-password.svg"
+                                        }
+                                         alt="password" 
+                                        />
+                                      
+
                                     </button>
                                 </div>
                                 {passwordStateError &&

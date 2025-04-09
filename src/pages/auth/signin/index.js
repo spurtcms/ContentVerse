@@ -9,7 +9,7 @@ import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { channelName } from '@/pages/api/url'
+
 
 
 
@@ -27,7 +27,7 @@ const Signin = () => {
     const [signupTenantId, setSignupTenantId] = useState("");
     const [signupUserId, setSignupUserId] = useState("");
 
-    const [hidePassword, setHidePassword] = useState(false);
+    const [hidePassword, setHidePassword] = useState(true);
     const router = useRouter();
 
     const signupRegex = {
@@ -42,7 +42,7 @@ const Signin = () => {
             const variable_list = {
                 "entryFilter": {
                     "categorySlug": "best-stories",
-                    "ChannelName": channelName
+                   
                 },
                 "commonFilter": {
                     // "limit": 10,
@@ -217,9 +217,17 @@ const Signin = () => {
                             <div className='mb-[10px] last-of-type:mb-0 relative'>
                                 <label className='text-[14px] font-medium leading-[16px] text-[#1D1D1F] block mb-[5px]'>Password</label>
                                 <div className='relative flex items-center'>
-                                    <input placeholder="Enter your Password" type={`${hidePassword ? "text" : "password"}`} className={`border rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] font-normal leading-[16px] text-black placeholder:text-[#1516188F] ${passwordStateError ? "border-[#EC1919]" : "border-[#00000029]"} `} id="password" value={signup_Password} onChange={(e) => handleSignup(e)} />
+                                    <input placeholder="Enter your Password" type={`${hidePassword ? "password" : "text"}`} className={`border rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] font-normal leading-[16px] text-black placeholder:text-[#1516188F] ${passwordStateError ? "border-[#EC1919]" : "border-[#00000029]"} `} id="password" value={signup_Password} onChange={(e) => handleSignup(e)} />
                                     <button className='absolute right-[10px] p-0' onClick={(e) => setHidePassword(!hidePassword)}>
-                                        <img src="/img/hide-password.svg" alt="password" />
+                                        <img 
+                                        src=
+                                        {
+                                            hidePassword?
+                                            "/img/hide-password.svg" :
+                                             "/img/show-password.svg"
+                                        }
+                                       alt="password" 
+                                        />
                                     </button>
                                 </div>
                                 {passwordStateError &&

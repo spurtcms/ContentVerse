@@ -39,7 +39,7 @@ const Forgot_Password = () => {
             const variable_list = {
                 "entryFilter": {
                     "categorySlug": "best-stories",
-                    "ChannelName": channelName
+                   
                 },
                 "commonFilter": {
                     // "limit": 10,
@@ -210,7 +210,7 @@ const Forgot_Password = () => {
 
                             </div>
 
-                            <Link href="#" className='bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[24px] rounded-[4px] text-center hover:bg-[#28282c]' onClick={(e) => handleVerifyMailId(e)}>Verify</Link>
+                            <button className='bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[24px] rounded-[4px] text-center hover:bg-[#28282c]' onClick={(e) => handleVerifyMailId(e)}>Verify</button>
                         </div>
                         <div className='flex items-center space-x-[4px] mt-[30px] justify-center'>
                             <p className='text-[12px] font-medium leading-[14px] text-[#1516188F]'>Back to</p>

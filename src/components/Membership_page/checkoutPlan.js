@@ -15,7 +15,7 @@ export default function CheckoutPlan({ id }) {
     const [mailId, setMailId] = useState("");
     const [pass, setPass] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
-    const [phoneNum, setPhoneNum] = useState(null);
+    const [phoneNum, setPhoneNum] = useState("");
     const [companyName, setCompName] = useState("");
     const [position, setPosition] = useState("");
     const [nameError, setNameError] = useState("");
@@ -42,12 +42,14 @@ export default function CheckoutPlan({ id }) {
     const tenantId = useSelector((s) => s?.customerRedux?.Header_api_result_redux_function)
     console.log(header_api_result?.[0]?.tenantId, "cbdsjdfsd")
     const dispatch = useDispatch()
-    const InputFeildRegax = {
-        password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        email: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-        name: /^[A-Za-z]{3,}$/,
-        number: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\\./0-9]*$/
-    };
+   const InputFeildRegax = {
+    password:
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    email: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+    name: /^[A-Za-z]{3,}$/,
+    number: /^\d{10}$/,
+  };
+ 
 
     useEffect(() => {
         const fetchCategoryList = async () => {
@@ -93,15 +95,19 @@ export default function CheckoutPlan({ id }) {
     }, [id, header_api_result])
     const handleFeildChange = (e) => {
         const { id, value } = e?.target
-        if (id == "name") {
-            setUserName(value)
-        }
-        else if (id == "email") {
-            setMailId(value)
-        }
-        else if (id == "number") {
-            setPhoneNum(value)
-        }
+       if (id == "name") {
+      const nameValue = value.replace(/[^A-Za-z]/g, "");
+      setUserName(nameValue);
+    }
+    if (id == "email") {
+      setMailId(value);
+    }
+
+    if (id === "number") {
+      const numberValue = value.replace(/[^0-9]/g, "");
+      setPhoneNum(numberValue);
+    }
+    
         else if (id == "password") {
             setPass(value)
         }
@@ -160,22 +166,23 @@ export default function CheckoutPlan({ id }) {
             isValid = false
         }
 
-        if (phoneNum !== "") {
-            if (!InputFeildRegax?.number?.test(phoneNum)) {
-                setNumError("Mobile Number is Reqiured");
-                setNumErrorState(true);
-                isValid = false
-            } else {
-                setNumError("");
-                setNumErrorState(false)
-                isValid = true
-            }
-        } else {
-            setNumError("Mobile Number Required");
-            setNumErrorState(true);
-            isValid = false
-        }
-
+        if (phoneNum == "") {
+      setNumError("Mobile Number Required");
+      setNumErrorState(true);
+      isValid = false;
+    } else if (phoneNum.length < 10) {
+      setNumError("Mobile Number must be exactly 10 digits");
+      setNumErrorState(true);
+      isValid = false;
+    } else if (phoneNum.length > 10) {
+      setNumError("Mobile Number must be exactly 10 digits");
+      setNumErrorState(true);
+      isValid = false;
+    } else {
+      setNumError("");
+      setNumErrorState(false);
+      isValid = true;
+    }
         if (pass !== "") {
             if (!InputFeildRegax?.password.test(pass)) {
                 setPassError("Password must contain 8 charectors & contain number & special charectors");
@@ -379,7 +386,7 @@ export default function CheckoutPlan({ id }) {
                                 </div>
                                 <div >
                                     <label className="text-[14px] font-medium leading-[16px] text-[#1D1D1F] block mb-[10px]">Mobile Number</label>
-                                    <input placeholder='00000-00000'
+                                    <input placeholder='XXXXXXXXXX'
                                         type="text"
                                         className={`border border-[#00000029] rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] font-normal leading-[16px] placeholder:text-[#1516188F] ${numError ? "border-[#EC1919]" : "border-[#00000029]"}`}
                                         onChange={handleFeildChange}
@@ -400,9 +407,20 @@ export default function CheckoutPlan({ id }) {
                                         id="password"
                                         type={`${hidePass ? "password" : "text"}`}
                                     />
-                                    <button className="absolute right-[10px]" onClick={(e) => setHidePass(!hidePass)} >
-                                        <img src="/img/hide-password.svg" alt="password" />
-                                    </button>
+                                     <button
+                      className="absolute right-[10px]"
+                      onClick={(e) => setHidePass(!hidePass)}
+                    >
+                      <img
+                        src={
+                          hidePass
+                            ? "/img/hide-password.svg"
+                            : "/img/show-password.svg"
+                        }
+                        alt="password"
+                      />
+                    </button>
+                                    
 
                                 </div>
                                     {passErrorState &&
@@ -418,9 +436,19 @@ export default function CheckoutPlan({ id }) {
                                         id="confirmPass"
                                         type={`${confirmHidePass ? "password" : "text"}`}
                                     />
-                                    <button className="absolute right-[10px]" onClick={(e) => setConfirmHidePass(!confirmHidePass)}>
-                                        <img src="/img/hide-password.svg" alt="password" />
-                                    </button>
+                                    <button
+                      className="absolute right-[10px]"
+                      onClick={(e) => setConfirmHidePass(!confirmHidePass)}
+                    >
+                      <img
+                        src={
+                          confirmHidePass
+                            ? "/img/hide-password.svg"
+                            : "/img/show-password.svg"
+                        }
+                        alt="password"
+                      />
+                    </button>  
 
                                 </div>
                                     {confirmPassErrorState &&
