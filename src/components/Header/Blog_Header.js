@@ -368,9 +368,19 @@ const Blog_Header_Component = () => {
             {/* <div className='w-[50px] h-[50px] min-w-[50px] bg-[#DD5B15] rounded-full text-[30px] font-semibold leading-[48px] text-white grid place-items-center'>
                             K
                         </div> */}
-            {registered !== "" ||
-            registered !== null ||
-            registered !== undefined ? (
+            {registered == "" ||
+            registered == null ||
+            registered == undefined ? (
+              <>
+                {" "}
+                <button
+                  onClick={handleClick_signup}
+                  className="flex justify-center items-center bg-[#F33151] hover:bg-[#f15e76] px-[32px] max-[700px]:px-4 rounded-[50px] h-[47px] font-[700] text-base text-white whitespace-nowrap"
+                >
+                  Join Now
+                </button>
+              </>
+            ) : (
               <>
                 {userDetails ? (
                   <>
@@ -417,16 +427,6 @@ const Blog_Header_Component = () => {
                     </div>
                   </div>
                 )}
-              </>
-            ) : (
-              <>
-                {" "}
-                <button
-                  onClick={handleClick_signup}
-                  className="flex justify-center items-center bg-[#F33151] hover:bg-[#f15e76] px-[32px] max-[700px]:px-4 rounded-[50px] h-[47px] font-[700] text-base text-white whitespace-nowrap"
-                >
-                  Join Now
-                </button>
               </>
             )}
             <a
