@@ -1,4 +1,3 @@
-
 export const GET_POSTS_LIST_QUERY = `query
   ChannelEntriesList(
 $commonFilter: Filter
@@ -110,7 +109,6 @@ export const GET_POSTS_CATEGORYLIST_QUERY = `query($hierarchylevel: Int!){
     }
   }
   `;
-
 
 export const GET_POSTS_SLUG_QUERY = `query ChannelEntryDetail(
 $id: Int
@@ -261,7 +259,7 @@ $AdditionalData: EntriesAdditionalData
       length
     }
   }
-} `
+} `;
 
 export const GET_POSTS_CHANNELLIST_QUERY = `query
   CategoryList(
@@ -279,7 +277,7 @@ $commonFilter: Filter
         }
       }
     
-  }`
+  }`;
 
 export const GET_AUTHOR_LIST_QUERY = `query
 TopAuthorsList($id: Int){
@@ -293,7 +291,7 @@ TopAuthorsList($id: Int){
     
   
   }
-}`
+}`;
 
 export const GET_POSTS_CHANNELLIST_SLUG_QUERY = `
   query channelDetail($id: Int,$slug: String,$active: Boolean){
@@ -311,8 +309,7 @@ export const GET_POSTS_CHANNELLIST_SLUG_QUERY = `
     modifiedBy
     tenantId
   }
-}`
-
+}`;
 
 export const GET_POSTS_QUERY_CATEGORY = `query($hierarchylevel: Int!){
     categoriesList(hierarchyLevel: $hierarchylevel){
@@ -344,6 +341,18 @@ export const GET_SIGNIN_QUERY = `mutation
       message
       token
       success
+      memberDetails{
+        Id
+        firstName
+        lastName
+        NameString
+        email
+        password
+        mobile
+        profileImage
+        profileImagePath
+
+      }
     }
   }
 `;
@@ -365,7 +374,7 @@ export const GET_RESET_NEW_PASSWORD = `mutation
 resetPassword($input: MemberResetpassInfo!){
   resetPassword(input:$input)
 }
-`
+`;
 export const GET_MEMBERSHIP_PLAN = `query
 MembershipLevelList(
 $filter: Filter
@@ -391,7 +400,7 @@ $tenantId: String
 
       }
     }
-  }`
+  }`;
 export const POST_MEMBERSHIP_CHECKOUT_PLAN = `mutation
   MemberCheckoutDetails
   ($checkouts: MemberCheckoutDetails!)
@@ -399,7 +408,7 @@ export const POST_MEMBERSHIP_CHECKOUT_PLAN = `mutation
     MemberCheckoutDetails(
       checkouts:$checkouts
     )
-  }`
+  }`;
 
 export const GET_MEMBERSHIP_DETAIL_PAGE = `query
   MembershipLevelDetails(
@@ -425,7 +434,7 @@ $tenantId: String
       }
     }
   }
-`
+`;
 export const GET_PAYMENT_INFORMATION = `
  query
     Integration($tenantId: String){
@@ -439,6 +448,35 @@ export const GET_PAYMENT_INFORMATION = `
                 CoverImage
             }
         }
-    }
+    }`;
 
-`
+export const GET_USER_DETAILS = `query MemberProfileDetails($id: Int!){
+  MemberProfileDetails(id:$id){
+    Id
+    firstName
+    lastName
+    email
+    profileImage
+    profileImagePath
+    password
+    username
+    mobile  
+    NameString
+  }
+}`;
+
+export const UPDATE_USER_DETAILS = `mutation updateMemberProfile($input: UpdateMember!){
+  updateMemberProfile(input:$input){
+    message
+    memberDetails{
+      Id
+      firstName
+      lastName
+      mobile
+      username
+      profileImage
+      profileImagePath
+      password
+    }
+  }
+}`;
