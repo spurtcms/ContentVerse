@@ -168,7 +168,7 @@ const Signin = () => {
           );
 
           setNameInitial(response?.memberCheckLogin?.memberDetails?.NameString);
-          Cookies.set("authToken", userToken);
+          // Cookies.set("authToken", userToken);
         } catch (error) {
           console.error("Error fetching data:", error);
         }

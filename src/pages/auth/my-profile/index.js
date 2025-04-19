@@ -4,12 +4,7 @@ import { uniqueId } from "@/pages/api/clientAction";
 import { fetchGraphQl } from "@/pages/api/graphicql";
 import { GET_USER_DETAILS, UPDATE_USER_DETAILS } from "@/pages/api/query";
 import { image_url } from "@/pages/api/url";
-import {
-  get_name_first_latter,
-  get_user_profile,
-} from "@/StoreConfiguration/slices/customer";
 import { useRouter } from "next/router";
-// import Footer from '@/Components/Footer';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select, { components } from "react-select";
@@ -53,8 +48,9 @@ const Page = () => {
   const [image, setImage] = useState("");
   const [submit, setSubmit] = useState(0);
   const [updateProfile, setUpdateProfile] = useState("");
+  const [removeState, setRemoveState] = useState(false);
   const dispatch = useDispatch();
-  console.log(image,"imagePath")
+  console.log(image, "imagePath");
   const nameStringData = localStorage.getItem("NameString");
   const user_id = useSelector((s) => s?.customerRedux?.get_user_id_Redux_func);
 
@@ -264,8 +260,8 @@ const Page = () => {
       setNumError("Mobile number is required");
       setNumErrorState(true);
       isValid = false;
-    } else if (PhoneNum.length !== 15) {
-      setNumError("Mobile number must be exactly 15 digits");
+    } else if (PhoneNum.length !== 15 || PhoneNum.length !== 10) {
+      setNumError("Mobile number must be exactly 10 or 15 digits");
       setNumErrorState(true);
       isValid = false;
     } else {
@@ -291,6 +287,7 @@ const Page = () => {
           email: email,
           mobile: PhoneNum,
           profileImage: base64String,
+          removeImage: removeState,
         },
       };
 
@@ -307,15 +304,8 @@ const Page = () => {
       }
     }
   };
-
-  console.log(updateProfile, "cbjsbjshbjhbdfg");
-
-  useEffect(() => {
-    dispatch(get_user_profile(updateProfile));
-  }, [updateProfile]);
-
   const handleRemoveImage = (e) => {
-    // e.preventDefault();
+    setRemoveState(true);
     setBase64String();
     setImage();
   };
@@ -357,7 +347,7 @@ const Page = () => {
                       // value={image}
                       className="left-0 top-0 opacity-0 w-full h-full absolute cursor-pointer text-[0px]"
                     />
-                  
+
                     <p className=" flex text-[14px] text-center font-medium leading-[17px] text-[#120B14]">
                       <img src="/img/upload.svg" alt="upload" />
                       Upload Image
@@ -371,17 +361,21 @@ const Page = () => {
                     Remove
                   </button>
                 </div>
-                {image !=="" || image!==null ? <>
-                  <p className="text-[14px] font-normal leading-[17px] text-[#1516188F]">
+                {image !== "" || image !== null ? (
+                  <>
+                    <p className="text-[14px] font-normal leading-[17px] text-[#1516188F]">
                       {/* Only PNG or JPG images are allowed. Maximum file size:
                       5MB. */}
-                        {!isValid && (
-                      <div style={{ color: "red" }}>{errorMessage}</div>
-                    )}
+                      {!isValid && (
+                        <div style={{ color: "red" }}>{errorMessage}</div>
+                      )}
                     </p>
-                </>:<></>}
-                
-                    {/* <p className="text-[14px] font-normal leading-[17px] text-[#1516188F]">
+                  </>
+                ) : (
+                  <></>
+                )}
+
+                {/* <p className="text-[14px] font-normal leading-[17px] text-[#1516188F]">
                       {userDetails?.profileImage}
                     </p> */}
               </div>

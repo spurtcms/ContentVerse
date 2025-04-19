@@ -34,33 +34,23 @@ const Blog_Header_Component = () => {
   );
   const [errorMessage, setErrorMessage] = useState("");
   const imagUrl = image_url;
-
   const nameStringData = nameString();
-  console.log(nameStringData, "sdjshdjshdjshdjsdjsd");
-
-  const profile_image = useSelector((s) => s?.customerRedux?.get_user_profile);
-
-  console.log(imagUrl + profile_image, "nsagxwgxvwyevwy");
-
-  console.log(header_api_result?.[0]?.tenantId, "cdbjfbsdnfj");
-  console.log(Blogs_list_api_result, "djncjbshc");
   const id = header_api_result?.[0]?.tenantId;
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const user_id = useSelector((s) => s?.customerRedux?.get_user_id_Redux_func);
   const [registered, setRegistered] = useState("");
   const [userDetails, setUserDetails] = useState({});
-  console.log(userDetails, "cbhbchdcbdhbh");
   const Id = uniqueId();
-  console.log(Id, "setIdIDiD");
   useEffect(() => {
     const fetchData = async () => {
       let variable = {
         id: Id,
       };
       try {
-        const data = await fetchGraphQl(GET_USER_DETAILS, variable);
-        setUserDetails(data?.MemberProfileDetails?.profileImagePath);
-        console.log("data", data);
+        if (Id !== null) {
+          const data = await fetchGraphQl(GET_USER_DETAILS, variable);
+          setUserDetails(data?.MemberProfileDetails?.profileImagePath);
+        }
       } catch (err) {
         console.error("Error fetching data:", err);
         setErrorMessage(err);

@@ -11,7 +11,6 @@ const initialState = {
   Fetching_MemberDetail_redux: [],
   get_name_first_later: "",
   get_user_id_Redux_func: "",
-  get_user_profile: "",
   get_name_first_latter: "",
 };
 
@@ -47,9 +46,6 @@ export const customerSlice = createSlice({
     get_user_id_Redux_func: (state, action) => {
       state.get_user_id_Redux_func = action.payload;
     },
-    get_user_profile: (state, action) => {
-      state.get_user_profile = action.payload;
-    },
   },
 });
 
@@ -63,7 +59,6 @@ export const {
   Fetching_MemberDetail_redux,
   get_name_first_latter,
   get_user_id_Redux_func,
-  get_user_profile,
 } = customerSlice.actions;
 
 export default customerSlice.reducer;
