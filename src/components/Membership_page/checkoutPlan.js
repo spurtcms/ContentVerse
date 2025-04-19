@@ -122,8 +122,10 @@ export default function CheckoutPlan({ id }) {
     if (id === "number") {
       let numberValue = value.replace(/[^0-9]/g, "");
 
-      if (numberValue.length > 15) {
-        numberValue = numberValue.slice(0, 15);
+      if (numberValue.length >= 15) {
+        // numberValue = numberValue.slice(0, 15);
+        setNumError("you have reached your limit 15 digits");
+        setNumErrorState(true);
       }
       setPhoneNum(numberValue);
     }
@@ -135,7 +137,6 @@ export default function CheckoutPlan({ id }) {
     // }
 
     // setPhoneNum(numberValue);
-
 
     if (id == "password") {
       setPass(value);
@@ -208,25 +209,19 @@ export default function CheckoutPlan({ id }) {
     //     isValid = false
     // }
 
-    if (phoneNum !== "") {
-      
-        setNumError("Mobile Number is Reqiured");
-        setNumErrorState(true);
-        isValid = false
-      }  
-      
-      else if (phoneNum.length !== 15) {
-        setNumError("Mobile number must be exactly 15 digits");
-        setNumErrorState(true);
-        isValid = false;
-    }
-      else {
+    if (phoneNum == "") {
+      setNumError("Mobile Number is Reqiured");
+      setNumErrorState(true);
+      isValid = false;
+    } else if (phoneNum.length < 10) {
+      setNumError("Mobile number must be exactly 10 digits");
+      setNumErrorState(true);
+      isValid = false;
+    } else {
       setNumError("");
       setNumErrorState(false);
       isValid = true;
     }
-
-
 
     if (pass !== "") {
       if (!InputFeildRegax?.password.test(pass)) {
@@ -502,6 +497,7 @@ export default function CheckoutPlan({ id }) {
                     onChange={handleFeildChange}
                     value={phoneNum}
                     id="number"
+                    maxLength={15}
                   />
                   {numErrorState && (
                     <div className="absolute flex items-start space-x-[4px] mt-[5px]">

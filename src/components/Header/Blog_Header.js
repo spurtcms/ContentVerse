@@ -34,11 +34,12 @@ const Blog_Header_Component = () => {
   );
   const [errorMessage, setErrorMessage] = useState("");
   const imagUrl = image_url;
-  const nameStringData = nameString();
+  // const nameStringData = nameString();
   const id = header_api_result?.[0]?.tenantId;
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const user_id = useSelector((s) => s?.customerRedux?.get_user_id_Redux_func);
   const [registered, setRegistered] = useState("");
+  const [nameString, setNameString] = useState("");
   const [userDetails, setUserDetails] = useState({});
   const Id = uniqueId();
   useEffect(() => {
@@ -49,6 +50,7 @@ const Blog_Header_Component = () => {
       try {
         if (Id !== null) {
           const data = await fetchGraphQl(GET_USER_DETAILS, variable);
+          setNameString(data?.MemberProfileDetails);
           setUserDetails(data?.MemberProfileDetails?.profileImagePath);
         }
       } catch (err) {
@@ -390,7 +392,7 @@ const Blog_Header_Component = () => {
                       className="w-12 h-12 bg-[#DD5B15] hover:bg-[#823e19] rounded-full text-2xl font-semibold text-white flex items-center justify-center"
                       onClick={() => setPopoverVisible((prev) => !prev)}
                     >
-                      {nameStringData}
+                      {nameString?.NameString}
                     </button>
                   </>
                 )}
@@ -419,6 +421,7 @@ const Blog_Header_Component = () => {
                 )}
               </>
             )}
+
             <a
               onClick={onMenuToggle}
               className="lg:hidden mr-[20px] w-[24px] max-[500px]:w-[16px] text-[30px] cursor-pointer"

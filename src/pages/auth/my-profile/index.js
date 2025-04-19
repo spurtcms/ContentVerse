@@ -39,7 +39,7 @@ const Page = () => {
   const [email, setEmail] = useState("");
   const [mailError, setMailError] = useState("");
   const [mailErrorState, setMailErrorState] = useState(false);
-  const [PhoneNum, setPhoneNum] = useState("");
+  const [PhoneNum, setPhoneNum] = useState();
   const [numError, setNumError] = useState("");
   const [numErrorState, setNumErrorState] = useState(false);
   const [base64String, setBase64String] = useState("");
@@ -143,7 +143,6 @@ const Page = () => {
       setErrorMessage("No file selected.");
     }
   };
-  console.log(base64String, "base64String");
 
   useEffect(() => {
     if (
@@ -186,14 +185,10 @@ const Page = () => {
     }
   }, [userDetails]);
 
-  console.log(userDetails, "bjbjbj");
-
   const router = useRouter();
-
   const InputFeildRegax = {
     emailId: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
     Fname: /^[A-Za-z]{4,}$/,
-
     number: /^\d{15}$/,
   };
 
@@ -202,7 +197,7 @@ const Page = () => {
 
     if (id == "Fname") {
       const nameValue = value.replace(/[^A-Za-z]/g, "");
-      setFirstName(nameValue);
+      setFirstName(value);
     }
 
     if (id == "lastName") {
@@ -216,14 +211,14 @@ const Page = () => {
       );
       setEmail(emailValue);
     }
-
     if (id === "number") {
       let numberValue = value.replace(/[^0-9]/g, "");
-
-      if (numberValue.length > 15) {
-        numberValue = numberValue.slice(0, 15);
+      if (numberValue.length >= 15) {
+        // numberValue.length >= 15;
+        // numberValue = numberValue.slice(0, 15);
+        setNumError("you have reached maximum limit of 15 digits");
+        setNumErrorState(true);
       }
-
       setPhoneNum(numberValue);
     }
   };
@@ -256,12 +251,12 @@ const Page = () => {
       setMailErrorState(false);
     }
 
-    if (PhoneNum === "") {
+    if (PhoneNum == "") {
       setNumError("Mobile number is required");
       setNumErrorState(true);
       isValid = false;
-    } else if (PhoneNum.length !== 15 || PhoneNum.length !== 10) {
-      setNumError("Mobile number must be exactly 10 or 15 digits");
+    } else if (PhoneNum.length < 10) {
+      setNumError("Mobile number must be exactly 10 digits");
       setNumErrorState(true);
       isValid = false;
     } else {
@@ -314,8 +309,13 @@ const Page = () => {
     router.push("/");
   };
 
-  console.log(image, "bhubuhbub");
-
+  const enterKeyPress = (e) => {
+    if (e.key == "Enter") {
+      if (e.target.value == PhoneNum || firstName || email || lastName) {
+        handleSubmit();
+      }
+    }
+  };
   return (
     <>
       <Blog_Header_Component />
@@ -332,7 +332,7 @@ const Page = () => {
               ) : (
                 <div className="w-[90px] h-[90px] min-w-[90px] bg-[#DD5B15] hover:bg-[#823e19] rounded-full text-[42px] font-semibold leading-[48px] text-white grid place-items-center">
                   {/* {firstName?.charAt(0)?.toLocaleUpperCase()} */}
-                  {nameStringData}
+                  {userDetails?.NameString}
                 </div>
               )}
 
@@ -363,12 +363,19 @@ const Page = () => {
                 </div>
                 {image !== "" || image !== null ? (
                   <>
-                    <p className="text-[14px] font-normal leading-[17px] text-[#1516188F]">
-                      {/* Only PNG or JPG images are allowed. Maximum file size:
-                      5MB. */}
-                      {!isValid && (
-                        <div style={{ color: "red" }}>{errorMessage}</div>
-                      )}
+                    <p
+                      className={
+                        isValid
+                          ? "text-[14px] font-normal leading-[17px] text-[#1516188F]"
+                          : "text-[14px] font-normal leading-[17px] text-[#FF3B30]"
+                      }
+                    >
+                      Only PNG or JPG images are allowed. Maximum file size:
+                      5MB.
+                      {/* {!isValid && (
+                        
+                        // <div style={{ color: "red" }}>{errorMessage}</div>
+                      )} */}
                     </p>
                   </>
                 ) : (
@@ -397,6 +404,7 @@ const Page = () => {
                   } `}
                   value={firstName}
                   onChange={handleInputChange}
+                  onKeyDown={(e) => enterKeyPress(e)}
                 />
               </div>
               {nameErrorState && (
@@ -419,6 +427,7 @@ const Page = () => {
                   id="lastName"
                   value={lastName}
                   onChange={handleInputChange}
+                  onKeyDown={(e) => enterKeyPress(e)}
                   placeholder="Enter Last Name"
                   className={`h-[48px] text-[#120B14] focus:border-[#120B14] border border-solid border-[#E9E9E9] p-[15.5px_14px] rounded-[4px] text-[14px] font-normal leading-[17px] placeholder:text-[#1516188F] w-full
                    `}
@@ -438,6 +447,7 @@ const Page = () => {
                   id="emailId"
                   value={email}
                   onChange={handleInputChange}
+                  onKeyDown={(e) => enterKeyPress(e)}
                   className="h-[48px] text-[#120B14] focus:border-[#120B14] border border-solid border-[#E9E9E9] p-[15.5px_14px] rounded-[4px] text-[14px] font-normal leading-[17px] placeholder:text-[#1516188F] w-full "
                 />
               </div>
@@ -474,8 +484,11 @@ const Page = () => {
                     type="text"
                     id="number"
                     placeholder="00000 00000"
+                    maxLength={15}
+                    // minLength={10}
                     value={PhoneNum}
                     onChange={handleInputChange}
+                    onKeyDown={(e) => enterKeyPress(e)}
                     className={`text-[14px] h-[48px] font-normal leading-[17px] placeholder:text-[#1516188F] w-full border border-[#E9E9E9]   p-0 ${
                       numErrorState ? "border-[#EC1919]" : "border-[#00000029]"
                     }`}
