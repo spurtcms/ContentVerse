@@ -41,6 +41,7 @@ const Blog_Header_Component = () => {
   const [registered, setRegistered] = useState("");
   const [nameString, setNameString] = useState("");
   const [userDetails, setUserDetails] = useState({});
+  console.log(userDetails, "userDetailsWhat");
   const Id = uniqueId();
   useEffect(() => {
     const fetchData = async () => {
@@ -212,6 +213,9 @@ const Blog_Header_Component = () => {
   //         }
   //     }
   // }
+  const handleClick = () => {
+    setPopoverVisible(true);
+  };
   const onMenuToggle = () => {
     setIsMenuVisible(!isMenuVisible);
   };
@@ -231,6 +235,7 @@ const Blog_Header_Component = () => {
     localStorage.removeItem("NameString");
     router.push("/");
   };
+
   return (
     <>
       <header>
@@ -360,68 +365,84 @@ const Blog_Header_Component = () => {
             {/* <div className='w-[50px] h-[50px] min-w-[50px] bg-[#DD5B15] rounded-full text-[30px] font-semibold leading-[48px] text-white grid place-items-center'>
                             K
                         </div> */}
-            {registered == "" ||
-            registered == null ||
-            registered == undefined ? (
-              <>
-                {" "}
+
+            <div className="relative inline-block text-center">
+              {registered === "" ||
+              registered === null ||
+              registered === undefined ? (
                 <button
                   onClick={handleClick_signup}
                   className="flex justify-center items-center bg-[#F33151] hover:bg-[#f15e76] px-[32px] max-[700px]:px-4 rounded-[50px] h-[47px] font-[700] text-base text-white whitespace-nowrap"
                 >
                   Join Now
                 </button>
-              </>
-            ) : (
-              <>
-                {userDetails ? (
-                  <>
-                    <button className="w-12 h-12 rounded-full text-2xl font-semibold text-white flex items-center justify-center">
-                      <img
-                        src={imagUrl + userDetails}
-                        alt="profile"
-                        className="w-12 h-12 rounded-full "
+              ) : (
+                <>
+                  <div>
+                    {userDetails ? (
+                      <button
+                        type="button"
+                        className="inline-flex w-12 h-12 justify-center  rounded-md    shadow-xs   hover:bg-gray-50"
+                        id="menu-button"
+                        aria-expanded={isPopoverVisible}
+                        aria-haspopup="true"
                         onClick={() => setPopoverVisible((prev) => !prev)}
-                      />
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      type="button"
-                      className="w-12 h-12 bg-[#DD5B15] hover:bg-[#823e19] rounded-full text-2xl font-semibold text-white flex items-center justify-center"
-                      onClick={() => setPopoverVisible((prev) => !prev)}
-                    >
-                      {nameString?.NameString}
-                    </button>
-                  </>
-                )}
-                {isPopoverVisible && (
-                  <div
-                    className="absolute inline-block w-[150px] text-sm duration-1000 border border-gray-200 rounded-lg"
-                    style={{ top: "90px", right: "60px" }}
-                  >
-                    <div className="px-3 py-2 bg-gray-50 border-gray-700 rounded-lg">
-                      <button
-                        onClick={handleProfile}
-                        className="flex items-center space-x-2 mb-4 w-full h-full text-left text-[14px] font-normal leading-[17px] text-[#120B14] hover:bg-[#F1F1F1] rounded-lg"
                       >
-                        <img src="/img/profile1.svg" alt="profile" />
-                        <span>My Profile</span>
+                        <img
+                          src={imagUrl + userDetails}
+                          alt="profile"
+                          className="w-12 h-12 rounded-full"
+                        />
                       </button>
+                    ) : (
                       <button
-                        onClick={handleLogout}
-                        className="flex items-center ml-1 space-x-2 w-full h-full text-left text-[14px] font-normal leading-[17px] text-[#120B14] hover:bg-[#F1F1F1] rounded-lg"
+                        type="button"
+                        className="w-12 h-12 bg-[#DD5B15] hover:bg-[#823e19] rounded-full text-2xl font-semibold text-white flex items-center justify-center "
+                        onClick={() => setPopoverVisible((prev) => !prev)}
                       >
-                        <img src="/img/logout.svg" alt="logout" />
-                        <span>Logout</span>
+                        {nameString?.NameString}
                       </button>
-                    </div>
+                    )}
                   </div>
-                )}
-              </>
-            )}
 
+                  {isPopoverVisible && (
+                    <div
+                      className="absolute right-0 z-auto mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="menu-button"
+                      tabIndex="-1"
+                    >
+                      <div className="px-3 py-2 bg-gray-50 border-gray-700 rounded-lg">
+                        <button
+                          type="button" // Changed to button
+                          className="flex items-center space-x-2 mb-4 w-full h-full text-left text-[14px] font-normal leading-[17px] text-[#120B14] hover:bg-[#F1F1F1] rounded-lg"
+                          role="menuitem"
+                          tabIndex="-1"
+                          id="menu-item-profile" // Unique ID
+                          onClick={handleProfile}
+                        >
+                          <img src="/img/profile1.svg" alt="profile" />
+                          My Profile
+                        </button>
+
+                        <button
+                          type="button" // Changed to button
+                          className="flex items-center ml-1 space-x-2 w-full h-full text-left text-[14px] font-normal leading-[17px] text-[#120B14] hover:bg-[#F1F1F1] rounded-lg"
+                          role="menuitem"
+                          tabIndex="-1"
+                          id="menu-item-logout" // Unique ID
+                          onClick={handleLogout}
+                        >
+                          <img src="/img/logout.svg" alt="logout" />
+                          Logout
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
             <a
               onClick={onMenuToggle}
               className="lg:hidden mr-[20px] w-[24px] max-[500px]:w-[16px] text-[30px] cursor-pointer"
@@ -432,72 +453,6 @@ const Blog_Header_Component = () => {
         </div>
       </header>
 
-      {/* {clickedValue && (
-        <>
-          <div>
-            <div className="absolute top-0 bottom-0 left-0 right-0 block backdrop-blur-[2px] animate-fadein z-0 bg-gradient-to-br from-[rgba(0,0,0,0.2)] to-[rgba(0,0,0,0.1)]"></div>
-            <div className="max-w-[95vw] sm:max-w-lg m-auto " ref={divRef}>
-              <div
-                className="bg-white w-full max-w-[95vw] sm:max-w-lg rounded-lg shadow-xl m-auto relative translate-z-0 animate-popup"
-                onClick={(e) => handleclick_searchbar_div(e)}
-              >
-                <div className="z-10 relative flex items-center py-5 px-4 sm:px-7 bg-white rounded-lg">
-                  <div className="flex items-center justify-center w-4 h-4 mr-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      height="16"
-                      width="16"
-                      className="text-neutral-900"
-                      alt="Search"
-                    >
-                      <path
-                        d="M23.38,21.62l-6.53-6.53a9.15,9.15,0,0,0,1.9-5.59,9.27,9.27,0,1,0-3.66,7.36l6.53,6.53a1.26,1.26,0,0,0,1.76,0A1.25,1.25,0,0,0,23.38,21.62ZM2.75,9.5A6.75,6.75,0,1,1,9.5,16.25,6.76,6.76,0,0,1,2.75,9.5Z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
-                  </div>
-                  <input
-                    className="grow -my-5 py-5 -ml-3 pl-3 focus-visible:outline-none placeholder:text-gray-400 outline-none truncate"
-                    placeholder="Search posts, tags and authors"
-                    onChange={(e) => handlechange_keyword_inModal(e)}
-                  />
-                </div>
-              </div>
-              <div className="w-full z-[999] relative min-h-[64px] border border-[#cdcdcd70]  mt-2 rounded  p-[16px]   justify-start shadow-xl max-h-[300px] overflow-auto bg-white ">
-                <ul className="rounded m-auto">
-                  {Blogs_list_api_result.length > 0 ? (
-                    <>
-                      <li className="text-[12px] text-[#919090] mb-[10px]">
-                        BLOGS
-                      </li>
-                      {Blogs_list_api_result?.map((val, i) => (
-                        <Fragment key={i}>
-                          <li
-                            className="text-[14px] mb-[10px] cursor-pointer"
-                            onClick={(e) => handleClick_keyword_list(e, val)}
-                          >
-                            <Link href={`/blogs/${val?.slug}`} legacyBehavior>
-                              {val?.title}
-                            </Link>
-                          </li>
-                        </Fragment>
-                      ))}
-                    </>
-                  ) : (
-                    <>
-                      <li className="text-[12px] text-[#919090] mb-[10px] text-center flex items-center space-x-2">
-                        No data found
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </>
-      )} */}
-      {/* <p className='text-[#555555] text-center flex items-center space-x-2'> No data found</p> */}
       {console.log("clicked", clickedValue)}
     </>
   );
