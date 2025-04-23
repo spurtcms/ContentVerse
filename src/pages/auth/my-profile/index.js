@@ -404,6 +404,7 @@ const Page = () => {
                   } `}
                   value={firstName}
                   onChange={handleInputChange}
+                  maxLength={25}
                   onKeyDown={(e) => enterKeyPress(e)}
                 />
               </div>

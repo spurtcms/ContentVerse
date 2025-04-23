@@ -163,20 +163,58 @@ function MembershipPage() {
                       <p className="text-[14px] font-normal leading-[16px] text-[#1516188F] mb-[32px]">
                         {data?.Description}
                       </p>
-                      <h2 className="text-[16px] font-normal text-[#1516188F]">
-                        <span className="text-[36px] font-semibold leading-[43px] text-[#120B14]">
-                          ${data?.InitialPayment}
-                        </span>
-                        /
-                        {data?.BillingfrequentType == 7
-                          ? data?.BillingfrequentValue + " weeks"
-                          : data?.BillingfrequentType == 30
-                          ? data?.BillingfrequentValue + " month"
-                          : data?.BillingfrequentType == 365
-                          ? data?.BillingfrequentValue + " year"
-                          : data?.BillingfrequentValue + " days"}
-                      </h2>
-
+                      {/* <span
+                          className={
+                            data?.IsDiscount == 1
+                              ? "text-[36px] font-semibold leading-[43px] text-[#646466] line-through"
+                              : "text-[36px] font-semibold leading-[43px] text-[#120B14]"
+                          }
+                        > */}
+                      {data?.IsDiscount == 1 ? (
+                        <>
+                          <div className="flex">
+                            <div className="flex flex-row ">
+                              <span className="text-[36px] font-semibold leading-[43px] text-[#83838D] line-through mr-3">
+                                ${data?.InitialPayment}
+                              </span>
+                              <div className="flex">
+                                <p className="text-[36px] font-semibold leading-[43px] text-[#120B14] ">
+                                  ${data?.DiscountedAmount}
+                                </p>
+                                <h2 className="text-[16px] font-normal text-[#1516188F] mt-3 ">
+                                  /
+                                  {data?.BillingfrequentType == 7
+                                    ? data?.BillingfrequentValue + " weeks"
+                                    : data?.BillingfrequentType == 30
+                                    ? data?.BillingfrequentValue + " month"
+                                    : data?.BillingfrequentType == 365
+                                    ? data?.BillingfrequentValue + " year"
+                                    : data?.BillingfrequentValue + " days"}
+                                </h2>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          {/* <div className="flex"> */}
+                          <h2 className="text-[16px] font-normal text-[#1516188F]">
+                            <span className="text-[36px] font-semibold leading-[43px] text-[#120B14] ">
+                              ${data?.InitialPayment}
+                            </span>
+                            /
+                            {data?.BillingfrequentType == 7
+                              ? data?.BillingfrequentValue + " weeks"
+                              : data?.BillingfrequentType == 30
+                              ? data?.BillingfrequentValue + " month"
+                              : data?.BillingfrequentType == 365
+                              ? data?.BillingfrequentValue + " year"
+                              : data?.BillingfrequentValue + " days"}
+                          </h2>
+                          {/* </div> */}
+                        </>
+                      )}
+                      {/* </span> */}
                       <Link
                         className="bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-full block h-[42px] font-semibold text-[#FFFFFF] mt-[17px] rounded-[4px] text-center hover:bg-[#28282c]"
                         href={`/membership/${data?.Id}`}

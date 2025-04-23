@@ -397,6 +397,9 @@ $tenantId: String
         TrialBillingLimit 
         Id
         TenantId
+        DiscountedAmount 
+        DiscountPercentage
+        IsDiscount
 
       }
     }
@@ -430,6 +433,9 @@ $tenantId: String
         CustomTrial
         TrialBillingAmount
         TrialBillingLimit 
+          DiscountedAmount 
+        DiscountPercentage
+        IsDiscount
         
       }
     }

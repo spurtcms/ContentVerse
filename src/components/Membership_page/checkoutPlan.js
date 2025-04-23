@@ -130,14 +130,6 @@ export default function CheckoutPlan({ id }) {
       setPhoneNum(numberValue);
     }
 
-    // let numberValue = value.replace(/[^0-9]/g, "");
-
-    // if (numberValue.length > 15) {
-    //   numberValue = numberValue.slice(0, 15);
-    // }
-
-    // setPhoneNum(numberValue);
-
     if (id == "password") {
       setPass(value);
     }
@@ -190,25 +182,6 @@ export default function CheckoutPlan({ id }) {
       setMailErrorState(true);
       isValid = false;
     }
-
-    // if (phoneNum !== "") {
-    //     if (!InputFeildRegax?.number.test(phoneNum)) {
-    //         setNumError("Mobile Number is Reqiured");
-    //         setNumErrorState(true);
-    //         isValid = false
-    //     }
-
-    //     else {
-    //         setNumError("");
-    //         setNumErrorState(false)
-    //         isValid = true
-    //     }
-    // } else {
-    //     setNumError("Mobile Number Required");
-    //     setNumErrorState(true);
-    //     isValid = false
-    // }
-
     if (phoneNum == "") {
       setNumError("Mobile Number is Reqiured");
       setNumErrorState(true);
@@ -222,7 +195,6 @@ export default function CheckoutPlan({ id }) {
       setNumErrorState(false);
       isValid = true;
     }
-
     if (pass !== "") {
       if (!InputFeildRegax?.password.test(pass)) {
         setPassError(
@@ -240,7 +212,6 @@ export default function CheckoutPlan({ id }) {
       setPassErrorState(true);
       isValid = false;
     }
-
     if (confirmPass == "") {
       setConfirmPassError("password is required");
       setConfirmPassErrorState(true);
@@ -390,8 +361,48 @@ export default function CheckoutPlan({ id }) {
                         {data?.Description}
                       </p>
                     </div>
-                    <div>
-                      <p className="text-[16px] font-normal text-[#1516188F]">
+
+                    {data?.IsDiscount == 1 ? (
+                      <>
+                        <div className="flex flex-row ">
+                          <span className="text-[36px] font-semibold leading-[43px] text-[#646466] line-through mr-3">
+                            ${data?.InitialPayment}
+                          </span>
+                          <p className="text-[36px] font-semibold leading-[43px] text-[#120B14] ">
+                            ${data?.DiscountedAmount}
+                          </p>
+                          <h2 className="text-[16px] font-normal text-[#1516188F] mt-4">
+                            /
+                            {data?.BillingfrequentType == 7
+                              ? data?.BillingfrequentValue + " weeks"
+                              : data?.BillingfrequentType == 30
+                              ? data?.BillingfrequentValue + " month"
+                              : data?.BillingfrequentType == 365
+                              ? data?.BillingfrequentValue + " year"
+                              : data?.BillingfrequentValue + " days"}
+                          </h2>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        {/* <div className="flex"> */}
+                        <h2 className="text-[16px] font-normal text-[#1516188F]">
+                          <span className="text-[36px] font-semibold leading-[43px] text-[#120B14] ">
+                            ${data?.InitialPayment}
+                          </span>
+                          /
+                          {data?.BillingfrequentType == 7
+                            ? data?.BillingfrequentValue + " weeks"
+                            : data?.BillingfrequentType == 30
+                            ? data?.BillingfrequentValue + " month"
+                            : data?.BillingfrequentType == 365
+                            ? data?.BillingfrequentValue + " year"
+                            : data?.BillingfrequentValue + " days"}
+                        </h2>
+                        {/* </div> */}
+                      </>
+                    )}
+                    {/* <p className="text-[16px] font-normal text-[#1516188F]">
                         <span
                           className="text-[24px] font-semibold leading-[29px]
                                  text-[#120B14]"
@@ -406,8 +417,8 @@ export default function CheckoutPlan({ id }) {
                           : data?.BillingfrequentType == 365
                           ? data?.BillingfrequentValue + "year"
                           : data?.BillingfrequentValue + "days"}
-                      </p>
-                    </div>
+                      </p> */}
+
                     <div className="max-sm:col-span-2">
                       <Link
                         className="bg-[#1D1D1F] border border-[#D8D8D8] text-[14px] leading-[16px] p-[12px] w-fit block h-[42px] font-semibold text-[#FFFFFF] rounded-[4px] text-center hover:bg-[#28282c] max-sm:w-full"
@@ -450,6 +461,7 @@ export default function CheckoutPlan({ id }) {
                     } `}
                     onChange={handleFeildChange}
                     value={userName}
+                    maxLength={30}
                     id="name"
                   />
                   {nameErrorState && (
@@ -602,21 +614,24 @@ export default function CheckoutPlan({ id }) {
                   <input
                     placeholder="Eg: Apple"
                     type="text"
-                    className={`border border-[#00000029] rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] font-normal leading-[16px] placeholder:text-[#1516188F] ${
-                      companyError ? "border-[#EC1919]" : "border-[#00000029]"
-                    }`}
+                    className={
+                      "border border-[#00000029] rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] font-normal leading-[16px] placeholder:text-[#1516188F] "
+                    }
+                    // ${  companyError ? "border-[#EC1919]" : "border-[#00000029]"}
+
                     onChange={handleFeildChange}
                     value={companyName}
+                    maxLength={35}
                     id="companyName"
                   />
-                  {companyErrorState && (
+                  {/* {companyErrorState && (
                     <div className="absolute flex items-start space-x-[4px] mt-[5px]">
                       <img src="/img/error.svg" alt="error" />{" "}
                       <p className="text-[10px] font-normal leading-[12px] text-[#EC1919]">
                         {companyError}{" "}
                       </p>
                     </div>
-                  )}
+                  )} */}
                 </div>
                 <div className="col-span-2 max-sm:col-span-1">
                   <label className="text-[14px] font-medium leading-[16px] text-[#1D1D1F] block mb-[10px]">
@@ -625,21 +640,23 @@ export default function CheckoutPlan({ id }) {
                   <input
                     placeholder="Eg: Product Designer"
                     type="text"
-                    className={`border border-[#00000029] rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] font-normal leading-[16px] placeholder:text-[#1516188F] ${
-                      positionError ? "border-[#EC1919]" : "border-[#00000029]"
-                    }`}
+                    className={
+                      "border border-[#00000029] rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] font-normal leading-[16px] placeholder:text-[#1516188F] "
+                    }
+                    // ${ positionError ? "border-[#EC1919]" : "border-[#00000029]"}
                     onChange={handleFeildChange}
                     value={position}
+                    maxLength={35}
                     id="position"
                   />
-                  {positionErrorState && (
+                  {/* {positionErrorState && (
                     <div className="absolute flex items-start space-x-[4px] mt-[5px]">
                       <img src="/img/error.svg" alt="error" />{" "}
                       <p className="text-[10px] font-normal leading-[12px] text-[#EC1919]">
                         {positionError}{" "}
                       </p>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

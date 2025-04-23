@@ -234,6 +234,7 @@ const Signup = () => {
                   } `}
                   id="name"
                   value={signup_Name}
+                  maxLength={25}
                   onChange={handleSignup}
                 />
                 {nameStateError && (
